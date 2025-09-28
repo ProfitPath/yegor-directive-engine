@@ -10,7 +10,7 @@ import { BackgroundEffects } from './BackgroundEffects';
 import { CustomCursor } from './CustomCursor';
 import { supabase } from '@/integrations/supabase/client';
 
-export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'REJECTED' | 'ERROR' | 'CONTINUE';
+export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'REJECTED' | 'ERROR';
 
 export const SortingEngine = () => {
   const [state, setState] = useState<EngineState>('BOOT');
@@ -59,10 +59,6 @@ export const SortingEngine = () => {
     setState('IDLE');
     setUserInput('');
     setResult('');
-  };
-
-  const handleContinue = () => {
-    setState('CONTINUE');
   };
 
   // THE IRON DOCTRINE - Sequential Analysis Protocol v4.0 - Now powered by Claude
@@ -133,11 +129,7 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
         )}
         
         {(state === 'RESULTS' || state === 'REJECTED') && result && (
-          <ResultsDisplay result={result} onReset={handleReset} onContinue={handleContinue} />
-        )}
-        
-        {state === 'CONTINUE' && (
-          <PromptInput onSubmit={handleInputSubmit} />
+          <ResultsDisplay result={result} onReset={handleReset} onContinueSubmit={handleInputSubmit} />
         )}
         
         {state === 'ERROR' && (

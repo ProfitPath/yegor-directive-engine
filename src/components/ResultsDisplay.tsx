@@ -8,14 +8,16 @@ import useTypewriter from '../hooks/useTypewriter';
 interface ResultsDisplayProps {
   result: string;
   onReset: () => void;
-  onContinue: () => void;
+  onContinueSubmit: (input: string) => void;
 }
 
-export const ResultsDisplay = ({ result, onReset, onContinue }: ResultsDisplayProps) => {
+export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDisplayProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [startTypewriter, setStartTypewriter] = useState(false);
+  const [showContinueInput, setShowContinueInput] = useState(false);
+  const [continueInput, setContinueInput] = useState('');
   
   // Check if this is a rejection
   const isRejected = result.includes("Even Yegor can't save you");
@@ -166,12 +168,56 @@ export const ResultsDisplay = ({ result, onReset, onContinue }: ResultsDisplayPr
           <span className="text-shadow-whisper text-sm">|</span>
           
           <button
-            onClick={onContinue}
+            onClick={() => setShowContinueInput(!showContinueInput)}
             className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
           >
             [ CONTINUE DISCUSSION ]
           </button>
         </div>
+
+        {/* Continue Discussion Input */}
+        {showContinueInput && (
+          <div className="mb-8 w-full max-w-4xl mx-auto">
+            <div className="relative">
+              <textarea
+                value={continueInput}
+                onChange={(e) => setContinueInput(e.target.value)}
+                placeholder="Continue the discussion..."
+                className="dynamic-textarea w-full min-h-[120px] bg-void-primary/20 border border-shadow-edge text-document-aged placeholder-shadow-edge/60 p-4 focus:outline-none focus:border-blood-accent transition-colors duration-200"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    if (continueInput.trim()) {
+                      onContinueSubmit(continueInput.trim());
+                      setContinueInput('');
+                      setShowContinueInput(false);
+                    }
+                  }
+                }}
+              />
+              <div className="flex justify-between mt-4">
+                <button
+                  onClick={() => setShowContinueInput(false)}
+                  className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
+                >
+                  [ CANCEL ]
+                </button>
+                <button
+                  onClick={() => {
+                    if (continueInput.trim()) {
+                      onContinueSubmit(continueInput.trim());
+                      setContinueInput('');
+                      setShowContinueInput(false);
+                    }
+                  }}
+                  className="text-mono text-shadow-whisper hover:text-blood-accent transition-colors duration-200 text-sm"
+                >
+                  [ SUBMIT ]
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* System Info */}
         <div className="flex justify-between text-mono-diagnostic text-shadow-whisper">
