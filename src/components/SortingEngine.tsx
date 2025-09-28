@@ -60,58 +60,91 @@ export const SortingEngine = () => {
     setResult('');
   };
 
-  // Strategic Analysis Engine - Ghost in the Machine v3.0
+  // THE IRON DOCTRINE - Sequential Analysis Protocol v4.0
   const analyzeObjective = (input: string): string => {
     const lowercaseInput = input.toLowerCase();
     
-    // Check for rejection triggers first
-    if (lowercaseInput.includes('no money') || lowercaseInput.includes('free') || 
-        lowercaseInput.includes('poor') || lowercaseInput.includes('broke') ||
-        lowercaseInput.includes('$0') || lowercaseInput.includes('no budget')) {
+    // **STEP 1: BUDGETARY VIABILITY ASSESSMENT** - First and most critical filter
+    const rejectionTriggers = ['cheap', 'free', 'broke', 'no money', 'poor'];
+    const budgetNumbers = input.match(/\$(\d+)|(\d+)\s*(dollars?|bucks?|usd)/gi);
+    
+    // Check for rejection triggers
+    if (rejectionTriggers.some(trigger => lowercaseInput.includes(trigger))) {
       return "Even Yegor can't save you. 💔";
     }
     
-    // Strategic analysis logic with economic intelligence
-    if (lowercaseInput.includes('twitter') || lowercaseInput.includes('followers') || lowercaseInput.includes('b2b') || 
-        lowercaseInput.includes('clients') || lowercaseInput.includes('calls') || lowercaseInput.includes('authority') || 
-        lowercaseInput.includes('lead generation') || lowercaseInput.includes('viral')) {
+    // Check for specific monetary amounts below $100
+    if (budgetNumbers) {
+      for (const match of budgetNumbers) {
+        const amount = parseInt(match.replace(/[^\d]/g, ''));
+        if (amount < 100) {
+          return "Even Yegor can't save you. 💔";
+        }
+      }
+    }
+    
+    // **STEP 2: OBJECTIVE & SOPHISTICATION ANALYSIS**
+    const beginnerIndicators = ['start', 'new', 'learn', 'beginner', 'begin'];
+    const professionalIndicators = ['scale', 'improve', 'optimize', 'established', 'already'];
+    const budgetConstraintIndicators = ['under 1000', 'less than 1000', 'budget', '500', '300'];
+    
+    const isBeginnerMode = beginnerIndicators.some(indicator => lowercaseInput.includes(indicator));
+    const isProfessionalMode = professionalIndicators.some(indicator => lowercaseInput.includes(indicator));
+    const hasBudgetConstraint = budgetConstraintIndicators.some(indicator => lowercaseInput.includes(indicator));
+    
+    // **STEP 3: PROTOCOL SELECTION**
+    
+    // XVIRALITY Protocol - B2B, Twitter, lead generation, calls
+    if (lowercaseInput.includes('twitter') || lowercaseInput.includes('b2b') || 
+        lowercaseInput.includes('clients') || lowercaseInput.includes('calls') || 
+        lowercaseInput.includes('authority') || lowercaseInput.includes('lead generation') || 
+        lowercaseInput.includes('viral') || lowercaseInput.includes('consulting')) {
+      
       return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
 ### Primary Protocol: **Protocol XVIRALITY**
 High-leverage viral inbound system deployment required for your engagement vector.
 
 ### Mission Rationale:
-Your objective "${input}" indicates a sophisticated understanding of value-based growth mechanics. Protocol XVIRALITY ($1500/m) is specifically engineered for B2B lead generation and high-value traffic acquisition through Twitter/X domination. This system provides reliable client acquisition infrastructure for founders and consultants who understand that investment drives results. The protocol leverages viral coefficient optimization and algorithmic preference exploitation to generate consistent sales calls and qualified leads.
+Your stated objective "${input}" indicates a sophisticated understanding of value-based growth mechanics. Protocol XVIRALITY ($1500/m) is specifically engineered for B2B lead generation and high-value traffic acquisition through Twitter/X domination. This system provides reliable client acquisition infrastructure for founders and consultants who understand that investment drives results. The protocol leverages viral coefficient optimization and algorithmic preference exploitation to generate consistent sales calls and qualified leads.
 
 ### Collateral Protocol Assessment:
-* **Protocol INBADDIESWETRUST:** Insufficient for your B2B requirements. UGC campaigns lack the authority-building mechanisms necessary for high-value client acquisition.
-* **Protocol PRINTMONEY:** Suboptimal without existing audience infrastructure. Requires foundation-layer traffic generation which XVIRALITY provides.
+* **Protocol INBADDIESWETRUST:** Tactically irrelevant. Your objective requires audience development, not creative asset optimization for existing ad campaigns.
+* **Protocol PRINTMONEY:** Your operational sophistication exceeds the framework-based approach. You require active system deployment, not strategic documentation.
 
 ### [ FINAL DIRECTIVE ]
 Deploy Protocol XVIRALITY immediately. Authority-based client acquisition is your optimal revenue vector.`;
-    } else if (lowercaseInput.includes('ads') || lowercaseInput.includes('ugc') || lowercaseInput.includes('video') || 
-               lowercaseInput.includes('e-com') || lowercaseInput.includes('roas') || lowercaseInput.includes('conversions') ||
-               lowercaseInput.includes('facebook') || lowercaseInput.includes('tiktok')) {
+    }
+    
+    // INBADDIESWETRUST Protocol - ads, UGC, video, ecom, ROAS
+    if (lowercaseInput.includes('ads') || lowercaseInput.includes('ugc') || 
+        lowercaseInput.includes('video') || lowercaseInput.includes('e-com') || 
+        lowercaseInput.includes('roas') || lowercaseInput.includes('conversions') ||
+        lowercaseInput.includes('facebook') || lowercaseInput.includes('tiktok') ||
+        lowercaseInput.includes('ecommerce') || lowercaseInput.includes('creative')) {
+      
       return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
 ### Primary Protocol: **Protocol INBADDIESWETRUST**
 Elite UGC deployment system required for your advertising optimization objective.
 
 ### Mission Rationale:
-Analysis of "${input}" reveals direct correlation with paid advertising performance requirements. Protocol INBADDIESWETRUST provides access to premium Eastern European models specializing in high-conversion UGC campaigns. This system is engineered for businesses running Facebook, TikTok, or other paid traffic who understand that superior creative assets drive superior ROAS. The protocol features elite creator matching and performance optimization specifically designed to generate "HELLA results."
+Analysis of "${input}" reveals direct correlation with paid advertising performance requirements. Protocol INBADDIESWETRUST provides access to premium Eastern European models specializing in high-conversion UGC campaigns. This system is engineered for businesses running Facebook, TikTok, or other paid traffic who understand that superior creative assets drive superior ROAS. The protocol features elite creator matching and performance optimization specifically designed to generate exceptional results.
 
 ### Collateral Protocol Assessment:
-* **Protocol XVIRALITY:** Insufficient for immediate advertising needs. Organic growth mechanisms do not address your conversion optimization requirements.
-* **Protocol PRINTMONEY:** Premature without optimized advertising infrastructure. UGC conversion optimization must precede product scaling.
+* **Protocol XVIRALITY:** Incompatible operational vector. Your focus is creative optimization, not organic audience development.
+* **Protocol PRINTMONEY:** Insufficient for your requirements. You need active creator deployment, not framework documentation.
 
 ### [ FINAL DIRECTIVE ]
-Initialize Protocol INBADDIESWETRUST for immediate advertising performance acceleration.`;
-    } else if (lowercaseInput.includes('start') || lowercaseInput.includes('new') || lowercaseInput.includes('learn') || 
-               lowercaseInput.includes('guide') || lowercaseInput.includes('course') || lowercaseInput.includes('cheap') ||
-               lowercaseInput.includes('budget') || lowercaseInput.includes('under 1000')) {
-      const isBeginner = lowercaseInput.includes('start') || lowercaseInput.includes('new') || 
-                        lowercaseInput.includes('learn') || lowercaseInput.includes('beginner');
-      const mode = isBeginner ? 'Beginner Mode' : 'Professional Mode';
+Engage Protocol INBADDIESWETRUST immediately. Superior creative assets are your competitive advantage.`;
+    }
+    
+    // PRINTMONEY Protocol - budget constraints, frameworks, courses, guides
+    if (hasBudgetConstraint || lowercaseInput.includes('framework') || 
+        lowercaseInput.includes('guide') || lowercaseInput.includes('course') || 
+        lowercaseInput.includes('pdf') || lowercaseInput.includes('info')) {
+      
+      const mode = isBeginnerMode ? 'Beginner Mode' : 'Professional Mode';
       
       return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
@@ -119,7 +152,7 @@ Initialize Protocol INBADDIESWETRUST for immediate advertising performance accel
 High-density strategic intelligence deployment optimal for your operational parameters.
 
 ### Mission Rationale:
-Your stated objective "${input}" indicates budget-conscious strategic positioning. Protocol PRINTMONEY (<$1000, one-time) provides comprehensive frameworks through high-density PDF delivery. ${mode} application is specifically calibrated for your current operational level. This protocol contains the complete strategic intelligence necessary for ${isBeginner ? 'agency framework establishment with low capital requirements' : 'advanced lead generation framework deployment for established operators'}.
+Your stated objective "${input}" combined with your operational budget places you directly in the optimal engagement window for Protocol PRINTMONEY (<$1000, one-time). ${mode} application is specifically calibrated for your current operational level. This protocol contains the complete strategic intelligence necessary for ${isBeginnerMode ? 'agency framework establishment with low capital requirements' : 'advanced lead generation framework deployment for established operators'}.
 
 ### Collateral Protocol Assessment:
 * **Protocol XVIRALITY:** Budget incompatible. $1500/m recurring investment exceeds your stated operational parameters.
@@ -127,8 +160,10 @@ Your stated objective "${input}" indicates budget-conscious strategic positionin
 
 ### [ FINAL DIRECTIVE ]
 Acquire Protocol PRINTMONEY immediately. Intelligence-based optimization is your most viable advancement vector.`;
-    } else {
-      return `## [ STRATEGIC ANALYSIS COMPLETE ]
+    }
+    
+    // Default PRINTMONEY Professional Mode for general queries
+    return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
 ### Primary Protocol: **Protocol PRINTMONEY (Professional Mode)**
 Knowledge monetization framework deployment detected as optimal revenue vector.
@@ -137,12 +172,11 @@ Knowledge monetization framework deployment detected as optimal revenue vector.
 Your objective "${input}" indicates established operational capacity with knowledge-based product potential. Protocol PRINTMONEY provides comprehensive frameworks for creating, launching, and scaling high-margin digital products. This system includes market validation protocols, content architecture optimization, and automated sales funnel deployment mechanisms designed for professional operators seeking systematic revenue generation.
 
 ### Collateral Protocol Assessment:
-* **Protocol XVIRALITY:** Complementary but secondary. Audience acquisition enhances product deployment but is not immediately critical for established operators.
-* **Protocol INBADDIESWETRUST:** Acceleration protocol for later phases. UGC campaigns optimize customer acquisition after product establishment.
+* **Protocol XVIRALITY:** Misaligned objective. Your focus is product creation, not B2B lead generation through social authority.
+* **Protocol INBADDIESWETRUST:** Incompatible operational vector. Your requirements are strategic framework deployment, not advertising creative optimization.
 
 ### [ FINAL DIRECTIVE ]
-Commence Protocol PRINTMONEY development cycle. Strategic intelligence monetization is your optimal advancement path.`;
-    }
+Secure Protocol PRINTMONEY immediately. Systematic knowledge monetization is your path to financial independence.`;
   };
 
   return (
