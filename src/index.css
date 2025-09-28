@@ -100,21 +100,33 @@ All colors MUST be HSL. No deviation permitted.
     overflow: hidden; /* Prevent accidental browser scrollbars */
   }
   
-  /* MASTER CONTAINER - GRID CENTERING PROTOCOL */
+  /* MASTER CONTAINER STATE MANAGEMENT - FULL-SCREEN PROTOCOL */
   #master-container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     height: 100vh;
-    place-items: center; /* Default: perfectly centered */
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden; /* No scroll by default */
+    overflow: hidden;
   }
 
-  /* STATE-BASED OVERRIDE: Enable scroll when results are active */
-  #master-container.results-active {
-    place-items: start center; /* Align content to the top, centered horizontally */
-    overflow-y: auto;          /* Enable vertical scrolling only in this state */
+  /* State-driven overflow management - Enable scrolling for all states */
+  #master-container.state-idle,
+  #master-container.state-boot,
+  #master-container.state-processing,
+  #master-container.state-results,
+  #master-container.state-rejected,
+  #master-container.state-error {
+    overflow-y: auto;
+  }
+
+  #master-container.state-results,
+  #master-container.state-rejected,
+  #master-container.state-error {
+    justify-content: flex-start;
   }
   
   /* SINGULARITY CURSOR SYSTEM */
@@ -202,10 +214,11 @@ All colors MUST be HSL. No deviation permitted.
   /* CRT MONITOR CONTAINER - FULL-SCREEN IMMERSION PROTOCOL */
   .crt-monitor {
     position: relative;
-    background-color: hsl(var(--background));
+    background-color: #000000;
     width: 100%;
-    min-height: 100vh; /* Fill viewport height while allowing growth */
+    min-height: 100vh;
     padding: 4rem 5rem;
+    overflow-y: auto;
     box-sizing: border-box;
   }
 
