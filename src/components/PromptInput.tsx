@@ -76,8 +76,8 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
             <p className="text-mono-prompt text-document-aged mb-4">
               ОПИШИТЕ ВАШУ ЦЕЛЬ:
             </p>
-            <div className="relative inline-block">
-              <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 right-0">
+            <div className="relative w-full">
+              <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 left-1/2 -translate-x-1/2">
                 [ CLASSIFIED INPUT ]
               </span>
             </div>
