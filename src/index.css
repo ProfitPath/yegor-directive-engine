@@ -218,7 +218,7 @@ All colors MUST be HSL. No deviation permitted.
     width: 100%;
     min-height: 100vh;
     padding: 4rem 5rem;
-    overflow-y: auto;
+    /* removed overflow-y: auto; scrolling is controlled by #master-container state classes */
     box-sizing: border-box;
   }
 
