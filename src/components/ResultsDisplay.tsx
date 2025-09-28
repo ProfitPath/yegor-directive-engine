@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import ReactMarkdown from 'react-markdown';
-import { useTypewriter } from '../hooks/useTypewriter';
+import useTypewriter from '../hooks/useTypewriter';
 
 interface ResultsDisplayProps {
   result: string;
@@ -22,8 +22,8 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   // Use the full result for typewriter effect
   const restOfContent = result;
   
-  // Typewriter effect for the analysis content
-  const typedAnalysis = useTypewriter(startTypewriter ? restOfContent : '', 2.5);
+  // Typewriter effect for the analysis content (333 chars/sec = ~3ms per char)
+  const typedAnalysis = useTypewriter(startTypewriter ? restOfContent : '', 333);
 
   useEffect(() => {
     if (!containerRef.current || isRejected) return;
