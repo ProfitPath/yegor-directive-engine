@@ -9,7 +9,7 @@ import { ResultsDisplay } from './ResultsDisplay';
 import { BackgroundEffects } from './BackgroundEffects';
 import { CustomCursor } from './CustomCursor';
 
-export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'ERROR';
+export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'REJECTED' | 'ERROR';
 
 export const SortingEngine = () => {
   const [state, setState] = useState<EngineState>('BOOT');
@@ -39,7 +39,13 @@ export const SortingEngine = () => {
       // Strategic Analysis Engine
       const analysisResult = analyzeObjective(input);
       setResult(analysisResult);
-      setState('RESULTS');
+      
+      // Check if result is rejection
+      if (analysisResult.includes("Even Yegor can't save you")) {
+        setState('REJECTED');
+      } else {
+        setState('RESULTS');
+      }
     } catch (error) {
       console.error('Analysis failed:', error);
       setState('ERROR');
@@ -54,63 +60,96 @@ export const SortingEngine = () => {
     setResult('');
   };
 
-  // Strategic Analysis Engine - Ghost in the Machine
+  // Strategic Analysis Engine - Ghost in the Machine v3.0
   const analyzeObjective = (input: string): string => {
     const lowercaseInput = input.toLowerCase();
     
-    // Strategic analysis logic
-    if (lowercaseInput.includes('twitter') || lowercaseInput.includes('followers') || lowercaseInput.includes('viral') || lowercaseInput.includes('audience')) {
-      return `## [ PROTOCOL ANALYSIS INITIATED ]
+    // Check for rejection triggers first
+    if (lowercaseInput.includes('no money') || lowercaseInput.includes('free') || 
+        lowercaseInput.includes('poor') || lowercaseInput.includes('broke') ||
+        lowercaseInput.includes('$0') || lowercaseInput.includes('no budget')) {
+      return "Even Yegor can't save you. 💔";
+    }
+    
+    // Strategic analysis logic with economic intelligence
+    if (lowercaseInput.includes('twitter') || lowercaseInput.includes('followers') || lowercaseInput.includes('b2b') || 
+        lowercaseInput.includes('clients') || lowercaseInput.includes('calls') || lowercaseInput.includes('authority') || 
+        lowercaseInput.includes('lead generation') || lowercaseInput.includes('viral')) {
+      return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
-### Primary Recommendation: **Protocol XVIRALITY**
-Direct engagement vector detected. Your objective requires systematic audience acquisition and platform domination protocols.
+### Primary Protocol: **Protocol XVIRALITY**
+High-leverage viral inbound system deployment required for your engagement vector.
 
-### Strategic Rationale:
-Your input "${input}" indicates a clear requirement for exponential growth mechanics. Protocol XVIRALITY deploys advanced engagement algorithms and viral coefficient optimization specifically designed for Twitter/X platform domination. This protocol has demonstrated consistent 10x-100x audience expansion rates across multiple deployment scenarios. The system leverages content velocity optimization, engagement cascade triggers, and algorithmic preference exploitation to achieve rapid, sustainable growth vectors.
+### Mission Rationale:
+Your objective "${input}" indicates a sophisticated understanding of value-based growth mechanics. Protocol XVIRALITY ($1500/m) is specifically engineered for B2B lead generation and high-value traffic acquisition through Twitter/X domination. This system provides reliable client acquisition infrastructure for founders and consultants who understand that investment drives results. The protocol leverages viral coefficient optimization and algorithmic preference exploitation to generate consistent sales calls and qualified leads.
 
-### Secondary Protocols & Tactical Assessment:
-* **Protocol INBADDIESWETRUST:** Secondary deployment vector. Once audience establishment is complete, UGC campaigns can leverage your established reach for monetization acceleration.
-* **Protocol PRINTMONEY:** Future-phase protocol. Requires existing audience infrastructure before deployment. Compatible with post-XVIRALITY operations for revenue maximization.
+### Collateral Protocol Assessment:
+* **Protocol INBADDIESWETRUST:** Insufficient for your B2B requirements. UGC campaigns lack the authority-building mechanisms necessary for high-value client acquisition.
+* **Protocol PRINTMONEY:** Suboptimal without existing audience infrastructure. Requires foundation-layer traffic generation which XVIRALITY provides.
 
-### [ DIRECTIVE ]
-Deploy Protocol XVIRALITY immediately. Audience acquisition is the foundation of all subsequent operations.`;
-    } else if (lowercaseInput.includes('ads') || lowercaseInput.includes('ugc') || lowercaseInput.includes('video') || lowercaseInput.includes('content') || lowercaseInput.includes('roas')) {
-      return `## [ PROTOCOL ANALYSIS INITIATED ]
+### [ FINAL DIRECTIVE ]
+Deploy Protocol XVIRALITY immediately. Authority-based client acquisition is your optimal revenue vector.`;
+    } else if (lowercaseInput.includes('ads') || lowercaseInput.includes('ugc') || lowercaseInput.includes('video') || 
+               lowercaseInput.includes('e-com') || lowercaseInput.includes('roas') || lowercaseInput.includes('conversions') ||
+               lowercaseInput.includes('facebook') || lowercaseInput.includes('tiktok')) {
+      return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
-### Primary Recommendation: **Protocol INBADDIESWETRUST**
-High-conversion content deployment vector identified. Your objective requires immediate UGC amplification protocols.
+### Primary Protocol: **Protocol INBADDIESWETRUST**
+Elite UGC deployment system required for your advertising optimization objective.
 
-### Strategic Rationale:
-Analysis of "${input}" reveals direct correlation with advertising optimization requirements. Protocol INBADDIESWETRUST provides access to elite, vetted content creators specializing in high-conversion UGC campaigns. The protocol features advanced creator matching algorithms, performance optimization systems, and conversion rate acceleration mechanisms. Deployment typically results in 300-500% ROAS improvement within first campaign cycle.
+### Mission Rationale:
+Analysis of "${input}" reveals direct correlation with paid advertising performance requirements. Protocol INBADDIESWETRUST provides access to premium Eastern European models specializing in high-conversion UGC campaigns. This system is engineered for businesses running Facebook, TikTok, or other paid traffic who understand that superior creative assets drive superior ROAS. The protocol features elite creator matching and performance optimization specifically designed to generate "HELLA results."
 
-### Secondary Protocols & Tactical Assessment:
-* **Protocol XVIRALITY:** Complementary organic reach amplification. Can reduce paid acquisition costs by 40-60% through audience pre-conditioning.
-* **Protocol PRINTMONEY:** Revenue diversification protocol. UGC traffic can be channeled into high-margin info product funnels for compound monetization.
+### Collateral Protocol Assessment:
+* **Protocol XVIRALITY:** Insufficient for immediate advertising needs. Organic growth mechanisms do not address your conversion optimization requirements.
+* **Protocol PRINTMONEY:** Premature without optimized advertising infrastructure. UGC conversion optimization must precede product scaling.
 
-### [ DIRECTIVE ]
-Initialize Protocol INBADDIESWETRUST for immediate conversion rate optimization and revenue acceleration.`;
+### [ FINAL DIRECTIVE ]
+Initialize Protocol INBADDIESWETRUST for immediate advertising performance acceleration.`;
+    } else if (lowercaseInput.includes('start') || lowercaseInput.includes('new') || lowercaseInput.includes('learn') || 
+               lowercaseInput.includes('guide') || lowercaseInput.includes('course') || lowercaseInput.includes('cheap') ||
+               lowercaseInput.includes('budget') || lowercaseInput.includes('under 1000')) {
+      const isBeginner = lowercaseInput.includes('start') || lowercaseInput.includes('new') || 
+                        lowercaseInput.includes('learn') || lowercaseInput.includes('beginner');
+      const mode = isBeginner ? 'Beginner Mode' : 'Professional Mode';
+      
+      return `## [ STRATEGIC ANALYSIS COMPLETE ]
+
+### Primary Protocol: **Protocol PRINTMONEY (${mode})**
+High-density strategic intelligence deployment optimal for your operational parameters.
+
+### Mission Rationale:
+Your stated objective "${input}" indicates budget-conscious strategic positioning. Protocol PRINTMONEY (<$1000, one-time) provides comprehensive frameworks through high-density PDF delivery. ${mode} application is specifically calibrated for your current operational level. This protocol contains the complete strategic intelligence necessary for ${isBeginner ? 'agency framework establishment with low capital requirements' : 'advanced lead generation framework deployment for established operators'}.
+
+### Collateral Protocol Assessment:
+* **Protocol XVIRALITY:** Budget incompatible. $1500/m recurring investment exceeds your stated operational parameters.
+* **Protocol INBADDIESWETRUST:** Operationally premature. Premium UGC deployment requires established advertising infrastructure and higher budget allocation.
+
+### [ FINAL DIRECTIVE ]
+Acquire Protocol PRINTMONEY immediately. Intelligence-based optimization is your most viable advancement vector.`;
     } else {
-      return `## [ PROTOCOL ANALYSIS INITIATED ]
+      return `## [ STRATEGIC ANALYSIS COMPLETE ]
 
-### Primary Recommendation: **Protocol PRINTMONEY**
-Revenue generation and knowledge monetization vector detected. Your objective requires high-margin digital asset creation protocols.
+### Primary Protocol: **Protocol PRINTMONEY (Professional Mode)**
+Knowledge monetization framework deployment detected as optimal revenue vector.
 
-### Strategic Rationale:
-Your stated objective "${input}" indicates potential for knowledge-based product development and systematic revenue generation. Protocol PRINTMONEY provides comprehensive frameworks for creating, launching, and scaling high-margin digital products. The system includes market validation protocols, content architecture optimization, and automated sales funnel deployment mechanisms. Standard deployment achieves 6-7 figure revenue generation within 12-18 month cycles.
+### Mission Rationale:
+Your objective "${input}" indicates established operational capacity with knowledge-based product potential. Protocol PRINTMONEY provides comprehensive frameworks for creating, launching, and scaling high-margin digital products. This system includes market validation protocols, content architecture optimization, and automated sales funnel deployment mechanisms designed for professional operators seeking systematic revenue generation.
 
-### Secondary Protocols & Tactical Assessment:
-* **Protocol XVIRALITY:** Foundation-layer protocol. Audience acquisition provides ready market infrastructure for product deployment.
-* **Protocol INBADDIESWETRUST:** Acceleration protocol. UGC campaigns can rapidly scale customer acquisition for established products.
+### Collateral Protocol Assessment:
+* **Protocol XVIRALITY:** Complementary but secondary. Audience acquisition enhances product deployment but is not immediately critical for established operators.
+* **Protocol INBADDIESWETRUST:** Acceleration protocol for later phases. UGC campaigns optimize customer acquisition after product establishment.
 
-### [ DIRECTIVE ]
-Commence Protocol PRINTMONEY development cycle. Knowledge monetization requires systematic execution of proven frameworks.`;
+### [ FINAL DIRECTIVE ]
+Commence Protocol PRINTMONEY development cycle. Strategic intelligence monetization is your optimal advancement path.`;
     }
   };
 
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 bg-void-primary overflow-hidden"
+      id="master-container"
+      className={`fixed inset-0 bg-void-primary state-${state.toLowerCase()}`}
     >
       {/* Custom Cursor */}
       <CustomCursor />
@@ -135,7 +174,7 @@ Commence Protocol PRINTMONEY development cycle. Knowledge monetization requires 
           <ProcessingAnimation userInput={userInput} />
         )}
         
-        {state === 'RESULTS' && result && (
+        {(state === 'RESULTS' || state === 'REJECTED') && result && (
           <ResultsDisplay result={result} onReset={handleReset} />
         )}
         

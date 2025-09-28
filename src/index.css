@@ -92,7 +92,33 @@ All colors MUST be HSL. No deviation permitted.
   }
 
   body {
-    @apply bg-background text-foreground overflow-hidden;
+    @apply bg-background text-foreground;
+  }
+  
+  /* MASTER CONTAINER STATE MANAGEMENT */
+  #master-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 32px;
+    box-sizing: border-box;
+  }
+
+  /* State-driven overflow management */
+  #master-container.state-idle,
+  #master-container.state-boot,
+  #master-container.state-processing {
+    overflow: hidden;
+  }
+
+  #master-container.state-results,
+  #master-container.state-rejected,
+  #master-container.state-error {
+    overflow-y: auto;
+    justify-content: flex-start;
   }
   
   /* SINGULARITY CURSOR SYSTEM */

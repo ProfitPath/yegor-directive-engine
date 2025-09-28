@@ -13,6 +13,9 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  
+  // Check if this is a rejection
+  const isRejected = result.includes("Even Yegor can't save you");
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -78,8 +81,33 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
     });
   };
 
+  // Handle rejection display
+  if (isRejected) {
+    return (
+      <div ref={containerRef} className="flex-1 flex items-center justify-center">
+        <div className="text-center">
+          <div ref={analysisRef} className="rejection-message mb-16">
+            <h1 className="text-display text-display-xl text-blood-accent">
+              {result}
+            </h1>
+          </div>
+          
+          {/* Reset Option */}
+          <div className="text-center mb-8">
+            <button
+              onClick={onReset}
+              className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
+            >
+              [ REINITIALIZE PROTOCOL ]
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div ref={containerRef} className="flex-1 flex items-center justify-center">
+    <div ref={containerRef} className="flex-1 flex items-start justify-center pt-16">
       <div className="w-full max-w-6xl px-8">
         {/* Analysis Results */}
         <div ref={analysisRef} className="analysis-container mb-16">
