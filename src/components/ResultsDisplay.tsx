@@ -116,8 +116,8 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   }
 
   return (
-    <div ref={containerRef} className="flex-1 flex items-start justify-center pt-16">
-      <div className="w-full max-w-6xl px-8">
+    <div ref={containerRef} className="flex-1 flex items-start justify-center min-h-screen">
+      <div className="w-full max-w-6xl px-8 py-16">
 
         {/* Analysis Results */}
         <div className="crt-monitor">
