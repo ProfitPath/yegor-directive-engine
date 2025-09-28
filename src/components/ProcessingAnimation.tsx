@@ -134,15 +134,15 @@ export const ProcessingAnimation = ({ userInput }: ProcessingAnimationProps) => 
       }, 300);
     }, 0.5)
     
-    // Climax flash effect
+    // Climax flash effect - using red flash to maintain void aesthetic
     .to(containerRef.current, {
       duration: 0.017, // 1 frame at 60fps
-      backgroundColor: '#FFFFFF',
+      backgroundColor: 'hsl(var(--blood-accent))',
       delay: 4.5
     })
     .to(containerRef.current, {
       duration: 0.1,
-      backgroundColor: 'hsl(var(--void-primary))'
+      backgroundColor: 'transparent'
     });
 
     return () => {
