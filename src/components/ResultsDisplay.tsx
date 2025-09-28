@@ -8,9 +8,10 @@ import useTypewriter from '../hooks/useTypewriter';
 interface ResultsDisplayProps {
   result: string;
   onReset: () => void;
+  onContinue: () => void;
 }
 
-export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
+export const ResultsDisplay = ({ result, onReset, onContinue }: ResultsDisplayProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const analysisRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -125,8 +126,8 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
       <div className="w-full max-w-6xl px-8 py-16">
 
         {/* Analysis Results */}
-        <div className="crt-monitor w-full max-h-[calc(100vh-8rem)] overflow-hidden">
-          <div ref={analysisRef} className="analysis-container mb-16">
+        <div className="crt-monitor w-full h-[calc(100vh-8rem)]">
+          <div ref={analysisRef} className="analysis-container mb-16 h-full overflow-auto">
             <div 
               className="primary-text-style analysis-content w-full"
               dangerouslySetInnerHTML={{
@@ -165,9 +166,10 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
           <span className="text-shadow-whisper text-sm">|</span>
           
           <button
+            onClick={onContinue}
             className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
           >
-            [ ANALYZE ALTERNATIVE VECTOR ]
+            [ CONTINUE DISCUSSION ]
           </button>
         </div>
 
