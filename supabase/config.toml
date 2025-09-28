@@ -1,1 +1,4 @@
 project_id = "ygqydhwyshehroezfkgk"
+
+[functions.claude-analysis]
+verify_jwt = false
