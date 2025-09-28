@@ -17,6 +17,7 @@ export const SortingEngine = () => {
   const [userInput, setUserInput] = useState('');
   const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Auto-boot sequence on mount
@@ -59,15 +60,20 @@ export const SortingEngine = () => {
     setState('IDLE');
     setUserInput('');
     setResult('');
+    setConversationHistory([]); // Clear conversation history on reset
   };
 
   // THE IRON DOCTRINE - Sequential Analysis Protocol v4.0 - Now powered by Claude
   const analyzeObjective = async (input: string): Promise<string> => {
     try {
       console.log('Calling Claude analysis for:', input);
+      console.log('Current conversation history length:', conversationHistory.length);
       
       const { data, error } = await supabase.functions.invoke('claude-analysis', {
-        body: { userInput: input }
+        body: { 
+          userInput: input,
+          conversationHistory: conversationHistory
+        }
       });
 
       if (error) {
@@ -78,6 +84,13 @@ export const SortingEngine = () => {
       if (!data || !data.result) {
         throw new Error('Invalid response from analysis system');
       }
+
+      // Update conversation history with new exchange
+      setConversationHistory(prev => [
+        ...prev,
+        { role: 'user', content: input },
+        { role: 'assistant', content: data.result }
+      ]);
 
       console.log('Claude analysis completed successfully');
       return data.result;

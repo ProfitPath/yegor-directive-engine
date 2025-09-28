@@ -111,7 +111,7 @@ serve(async (req) => {
   }
 
   try {
-    const { userInput } = await req.json();
+    const { userInput, conversationHistory = [] } = await req.json();
 
     if (!userInput || typeof userInput !== 'string') {
       return new Response(
@@ -126,18 +126,25 @@ serve(async (req) => {
     });
 
     console.log('Processing analysis request for input:', userInput);
+    console.log('Conversation history length:', conversationHistory.length);
 
-    // Call Claude with the Iron Doctrine system prompt
+    // Build messages array with conversation history
+    const messages = [
+      // Add conversation history
+      ...conversationHistory,
+      // Add current user input
+      {
+        role: 'user',
+        content: userInput,
+      },
+    ];
+
+    // Call Claude with the Iron Doctrine system prompt and full conversation history
     const response = await anthropic.messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 2048,
       system: MASTER_PROMPT,
-      messages: [
-        {
-          role: 'user',
-          content: userInput,
-        },
-      ],
+      messages: messages,
     });
 
     // Extract text from Claude's response
