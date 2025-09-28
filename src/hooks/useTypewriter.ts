@@ -7,33 +7,22 @@ export function useTypewriter(fullText: string, durationInSeconds: number) {
     // Reset on text change
     setTypedText(''); 
     
-    if (!fullText) return;
+    if (fullText) {
+      // HIGH-VELOCITY PROTOCOL: Fixed delay for constant brutally fast speed
+      const totalChars = fullText.length;
+      const delay = 0.6; // 0.6ms per character for maximum efficiency
+      let i = 0;
 
-    // ULTRA-HIGH-VELOCITY: rAF-driven chunk typing to bypass timer clamping
-    let i = 0;
-    let rafId = 0;
-    const msPerChar = 0.01; // 0.01ms per character (effectively instant for typical lengths)
-    let lastTime = performance.now();
+      const intervalId = setInterval(() => {
+        setTypedText((prev) => prev + fullText.charAt(i));
+        i++;
+        if (i >= totalChars) {
+          clearInterval(intervalId);
+        }
+      }, delay);
 
-    const step = (now: number) => {
-      const delta = now - lastTime; // ms elapsed since last frame
-      lastTime = now;
-
-      const charsToAdd = Math.max(1, Math.floor(delta / msPerChar));
-      const nextIndex = Math.min(fullText.length, i + charsToAdd);
-
-      if (nextIndex > i) {
-        setTypedText((prev) => prev + fullText.slice(i, nextIndex));
-        i = nextIndex;
-      }
-
-      if (i < fullText.length) {
-        rafId = requestAnimationFrame(step);
-      }
-    };
-
-    rafId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafId);
+      return () => clearInterval(intervalId);
+    }
   }, [fullText, durationInSeconds]);
 
   return typedText;
