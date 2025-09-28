@@ -116,12 +116,12 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   }
 
   return (
-    <div ref={containerRef} className="w-full min-h-screen flex justify-center bg-background">
-      <div className="w-full max-w-6xl px-8 py-16">
+    <div ref={containerRef} className="fixed inset-0 w-full h-screen flex justify-center bg-background overflow-hidden">
+      <div className="w-full max-w-6xl px-8 py-16 h-full">
 
         {/* Analysis Results */}
-        <div className="crt-monitor w-full max-h-[calc(100vh-8rem)] overflow-hidden">
-          <div ref={analysisRef} className="analysis-container mb-16">
+        <div className="crt-monitor w-full h-full overflow-hidden">
+          <div ref={analysisRef} className="analysis-container h-full">
             <div 
               className="primary-text-style analysis-content w-full"
               dangerouslySetInnerHTML={{
@@ -133,44 +133,42 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
               }}
             />
             {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
+
+            {/* Engagement Button - inside the same scroll area */}
+            <div className="text-center my-16">
+              <button
+                ref={buttonRef}
+                onClick={handleEngageClick}
+                className="group relative text-mono-button px-12 py-6 border-2 border-blood-accent text-blood-accent hover:bg-blood-accent hover:text-void-primary transition-all duration-200 transform hover:-translate-y-1"
+              >
+                <span className="relative z-10">[ ENGAGE PROTOCOL ]</span>
+                <div className="absolute inset-0 bg-blood-accent opacity-0 group-hover:opacity-20 transition-opacity duration-200" />
+              </button>
+            </div>
+
+            {/* Secondary Actions - inside same scroll area */}
+            <div className="text-center space-x-8 mb-8">
+              <button
+                onClick={onReset}
+                className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
+              >
+                [ REINITIALIZE PROTOCOL ]
+              </button>
+              <span className="text-shadow-whisper text-sm">|</span>
+              <button
+                className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
+              >
+                [ ANALYZE ALTERNATIVE VECTOR ]
+              </button>
+            </div>
+
+            {/* System Info - inside same scroll area */}
+            <div className="flex justify-between text-mono-diagnostic text-shadow-whisper">
+              <span>CLASSIFICATION: STRATEGIC</span>
+              <span>CONFIDENCE: 99.9%</span>
+              <span>YEGOR_OS_V2.0</span>
+            </div>
           </div>
-        </div>
-
-        {/* Engagement Button */}
-        <div className="text-center mb-16">
-          <button
-            ref={buttonRef}
-            onClick={handleEngageClick}
-            className="group relative text-mono-button px-12 py-6 border-2 border-blood-accent text-blood-accent hover:bg-blood-accent hover:text-void-primary transition-all duration-200 transform hover:-translate-y-1"
-          >
-            <span className="relative z-10">[ ENGAGE PROTOCOL ]</span>
-            <div className="absolute inset-0 bg-blood-accent opacity-0 group-hover:opacity-20 transition-opacity duration-200" />
-          </button>
-        </div>
-
-        {/* Secondary Actions */}
-        <div className="text-center space-x-8 mb-8">
-          <button
-            onClick={onReset}
-            className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
-          >
-            [ REINITIALIZE PROTOCOL ]
-          </button>
-          
-          <span className="text-shadow-whisper text-sm">|</span>
-          
-          <button
-            className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
-          >
-            [ ANALYZE ALTERNATIVE VECTOR ]
-          </button>
-        </div>
-
-        {/* System Info */}
-        <div className="flex justify-between text-mono-diagnostic text-shadow-whisper">
-          <span>CLASSIFICATION: STRATEGIC</span>
-          <span>CONFIDENCE: 99.9%</span>
-          <span>YEGOR_OS_V2.0</span>
         </div>
       </div>
     </div>
