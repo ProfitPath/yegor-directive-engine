@@ -110,7 +110,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
     <div ref={containerRef} className="flex-1 flex items-start justify-center pt-16">
       <div className="w-full max-w-6xl px-8">
         {/* Analysis Results */}
-        <div ref={analysisRef} className="analysis-container mb-16">
+        <div ref={analysisRef} className="analysis-container mb-16 text-center">
           <ReactMarkdown>{result}</ReactMarkdown>
         </div>
 
