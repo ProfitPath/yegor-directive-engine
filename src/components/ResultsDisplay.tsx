@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import ReactMarkdown from 'react-markdown';
 import { SovietTerminal } from './SovietTerminal';
+import { useTypewriter } from '../hooks/useTypewriter';
 
 interface ResultsDisplayProps {
   result: string;
@@ -16,6 +17,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [showSovietTerminal, setShowSovietTerminal] = useState(false);
   const [showRestOfContent, setShowRestOfContent] = useState(false);
+  const [startTypewriter, setStartTypewriter] = useState(false);
   
   // Check if this is a rejection
   const isRejected = result.includes("Even Yegor can't save you");
@@ -24,6 +26,9 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   const strategicAnalysisMatch = result.match(/## \[ STRATEGIC ANALYSIS COMPLETE \]/);
   const strategicAnalysisText = "[ STRATEGIC ANALYSIS COMPLETE ]";
   const restOfContent = strategicAnalysisMatch ? result.replace(/## \[ STRATEGIC ANALYSIS COMPLETE \]/, '') : result;
+  
+  // Typewriter effect for the analysis content
+  const typedAnalysis = useTypewriter(startTypewriter ? restOfContent : '', 6);
 
   useEffect(() => {
     if (!containerRef.current || isRejected) return;
@@ -36,6 +41,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
     // After Soviet terminal completes, show the rest of the content
     setTimeout(() => {
       setShowRestOfContent(true);
+      setStartTypewriter(true);
       
       if (!analysisRef.current) return;
 
@@ -52,7 +58,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
         ease: 'power2.out'
       })
       
-      // Button materialization
+      // Button materialization (delayed to appear after typewriter finishes)
       .fromTo(buttonRef.current, {
         opacity: 0,
         scale: 0.9
@@ -61,7 +67,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
         scale: 1,
         duration: 0.8,
         ease: 'back.out(1.7)'
-      }, '-=0.5');
+      }, '+=6'); // Wait for typewriter to complete
 
     }, 500);
   };
@@ -139,7 +145,8 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
         {/* Analysis Results */}
         {showRestOfContent && (
           <div ref={analysisRef} className="analysis-container mb-16">
-            <ReactMarkdown>{restOfContent}</ReactMarkdown>
+            <ReactMarkdown>{typedAnalysis}</ReactMarkdown>
+            {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
           </div>
         )}
 

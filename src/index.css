@@ -208,35 +208,74 @@ All colors MUST be HSL. No deviation permitted.
     animation: glitch 0.3s ease-in-out;
   }
   
-  /* MARKDOWN STYLING PROTOCOL */
+  /* MARKDOWN STYLING PROTOCOL - CRT Terminal Style */
+  .analysis-container {
+    position: relative;
+    background: #0a0a0a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 2rem;
+    color: #39FF14;
+    font-family: 'Press Start 2P', 'Roboto Mono', monospace;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.5), 
+                 0 0 10px rgba(57, 255, 20, 0.3);
+    animation: screen-flicker 10s infinite;
+  }
+
+  .analysis-container::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    border-radius: 6px;
+  }
+
+  .analysis-container h2,
+  .analysis-container h3,
+  .analysis-container p,
+  .analysis-container li,
+  .analysis-container strong {
+    font-family: 'Press Start 2P', 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 3;
+  }
+
   .analysis-container h2 {
-    font-family: 'Bebas Neue', 'Molot', sans-serif !important;
-    font-size: 4rem;
-    color: hsl(var(--document-aged));
+    font-size: 1.25rem !important;
+    line-height: 1.8;
     margin-bottom: 32px;
-    border-bottom: 2px solid hsl(var(--concrete-panel));
+    border-bottom: 2px solid #39FF14;
     padding-bottom: 16px;
+    letter-spacing: 2px;
   }
   
   .analysis-container h3 {
-    font-family: 'Bebas Neue', 'Molot', sans-serif !important;
-    font-size: 2.5rem;
-    color: hsl(var(--document-aged));
+    font-size: 0.9rem !important;
     margin-top: 48px;
     margin-bottom: 16px;
+    line-height: 1.6;
+    letter-spacing: 1px;
   }
   
   .analysis-container p, .analysis-container li {
-    font-family: 'Roboto Mono', monospace !important;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: hsl(var(--document-aged));
+    font-size: 0.7rem !important;
+    line-height: 1.6;
+    margin-bottom: 16px;
     max-width: 800px;
   }
   
   .analysis-container strong {
-    font-weight: 700;
-    color: hsl(var(--blood-accent));
+    color: #39FF14;
+    font-weight: normal;
   }
 
   .analysis-container ul {
@@ -246,6 +285,30 @@ All colors MUST be HSL. No deviation permitted.
 
   .analysis-container li {
     margin-bottom: 8px;
+  }
+
+  .blinking-cursor {
+    display: inline-block;
+    background-color: #39FF14;
+    width: 1ch;
+    height: 1.2rem;
+    animation: blink 1s step-end infinite;
+    margin-left: 4px;
+    position: relative;
+    z-index: 3;
+  }
+
+  @keyframes screen-flicker {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0.95; }
+    51% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes blink {
+    from, to { background-color: transparent; }
+    50% { background-color: #39FF14; }
   }
 
   /* DYNAMIC TEXTAREA STYLING */
