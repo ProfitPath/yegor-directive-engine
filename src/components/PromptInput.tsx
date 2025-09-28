@@ -64,7 +64,7 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
       <div className="w-full max-w-6xl px-4 sm:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
         {/* Protocol Header */}
         <div className="text-center mb-16">
-          <h2 className="text-display text-display-lg text-shadow-whisper mb-8">
+          <h2 className="text-display text-display-lg text-blood-accent mb-8">
             [ YEGOR SORTING PROTOCOL ]
           </h2>
           <div className="h-px bg-concrete-panel w-full mb-8" />
