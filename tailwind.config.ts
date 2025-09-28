@@ -14,6 +14,24 @@ export default {
     },
     extend: {
       colors: {
+        /* BRUTALIST PALETTE */
+        'void': {
+          primary: "hsl(var(--void-primary))",
+        },
+        'concrete': {
+          panel: "hsl(var(--concrete-panel))",
+        },
+        'document': {
+          aged: "hsl(var(--document-aged))",
+        },
+        'shadow': {
+          whisper: "hsl(var(--shadow-whisper))",
+        },
+        'blood': {
+          accent: "hsl(var(--blood-accent))",
+        },
+        
+        /* SYSTEM MAPPINGS */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -39,23 +57,9 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
         },
       },
       borderRadius: {
