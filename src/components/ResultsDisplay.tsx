@@ -98,24 +98,66 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
       <div ref={containerRef} className="w-full min-h-screen flex justify-center bg-background">
         <div className="w-full max-w-6xl px-8 py-16">
           {/* CRT Monitor for Rejection */}
-          <div className="crt-monitor w-full max-h-[calc(100vh-8rem)] overflow-hidden">
-            <div ref={analysisRef} className="analysis-container mb-16 text-center">
-              <div className="rejection-message mb-16">
-                <h1 className="text-display text-display-xl text-blood-accent">
-                  {result}
-                </h1>
+          <div className="crt-monitor w-full h-[calc(100vh-8rem)]">
+            <div ref={analysisRef} className="analysis-container mb-16 h-full overflow-auto flex flex-col">
+              <div className="flex-1 pb-4">
+                <div className="rejection-message mb-16 text-center">
+                  <h1 className="text-display text-display-xl text-blood-accent">
+                    {result}
+                  </h1>
+                </div>
               </div>
               
-              {/* Reset Option */}
-              <div className="text-center mb-8">
-                <button
-                  onClick={onReset}
-                  className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
-                >
-                  [ REINITIALIZE PROTOCOL ]
-                </button>
+              {/* Continue Discussion Input at Bottom */}
+              <div className="mt-auto pt-4 border-t border-shadow-edge/30">
+                <div className="relative">
+                  <textarea
+                    value={continueInput}
+                    onChange={(e) => setContinueInput(e.target.value)}
+                    placeholder="Continue the discussion..."
+                    className="w-full h-20 bg-void-primary/10 border border-shadow-edge/50 text-document-aged placeholder-shadow-edge/60 p-3 text-sm focus:outline-none focus:border-blood-accent/50 transition-colors duration-200 resize-none"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        if (continueInput.trim()) {
+                          onContinueSubmit(continueInput.trim());
+                          setContinueInput('');
+                        }
+                      }
+                    }}
+                  />
+                  <div className="flex justify-end mt-2 space-x-4">
+                    <button
+                      onClick={() => setContinueInput('')}
+                      className="text-xs text-shadow-edge/60 hover:text-document-aged transition-colors duration-200"
+                    >
+                      CLEAR
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (continueInput.trim()) {
+                          onContinueSubmit(continueInput.trim());
+                          setContinueInput('');
+                        }
+                      }}
+                      className="text-xs text-blood-accent hover:text-document-aged transition-colors duration-200"
+                    >
+                      SEND
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          
+          {/* Reset Option */}
+          <div className="text-center mb-8">
+            <button
+              onClick={onReset}
+              className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
+            >
+              [ REINITIALIZE PROTOCOL ]
+            </button>
           </div>
         </div>
       </div>
