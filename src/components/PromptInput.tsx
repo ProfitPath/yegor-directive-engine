@@ -61,7 +61,7 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
 
   return (
     <div className="flex-1 flex items-center justify-center">
-      <div className="w-full max-w-6xl px-8 mx-auto">
+      <div className="w-full max-w-6xl px-4 sm:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
         {/* Protocol Header */}
         <div className="text-center mb-16">
           <h2 className="text-display text-display-lg text-shadow-whisper mb-8">

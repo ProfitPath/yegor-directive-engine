@@ -105,19 +105,22 @@ All colors MUST be HSL. No deviation permitted.
     width: 100%;
     padding: 32px;
     box-sizing: border-box;
+    overflow-y: auto;
   }
 
-  /* State-driven overflow management */
+  /* State-driven overflow management - Enable scrolling for all states */
   #master-container.state-idle,
   #master-container.state-boot,
-  #master-container.state-processing {
-    overflow: hidden;
+  #master-container.state-processing,
+  #master-container.state-results,
+  #master-container.state-rejected,
+  #master-container.state-error {
+    overflow-y: auto;
   }
 
   #master-container.state-results,
   #master-container.state-rejected,
   #master-container.state-error {
-    overflow-y: auto;
     justify-content: flex-start;
   }
   
