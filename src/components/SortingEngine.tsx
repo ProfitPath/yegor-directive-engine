@@ -183,7 +183,7 @@ Secure Protocol PRINTMONEY immediately. Systematic knowledge monetization is you
     <div 
       ref={containerRef}
       id="master-container"
-      className={`fixed inset-0 bg-void-primary state-${state.toLowerCase()}`}
+      className={`state-${state.toLowerCase()} ${state === 'RESULTS' || state === 'REJECTED' ? 'results-active' : ''}`}
     >
       {/* Custom Cursor */}
       <CustomCursor />
