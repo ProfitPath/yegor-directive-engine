@@ -119,12 +119,10 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
     <div ref={containerRef} className="flex-1 flex items-start justify-center pt-16">
       <div className="w-full max-w-6xl px-8">
 
-        {/* CRT Monitor with Analysis Results */}
-        <div className="crt-monitor mb-16">
-          <div ref={analysisRef} className="analysis-container">
-            <ReactMarkdown>{typedAnalysis}</ReactMarkdown>
-            {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor">█</span>}
-          </div>
+        {/* Analysis Results */}
+        <div ref={analysisRef} className="analysis-container mb-16">
+          <ReactMarkdown>{typedAnalysis}</ReactMarkdown>
+          {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
         </div>
 
         {/* Engagement Button */}
