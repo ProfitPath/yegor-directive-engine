@@ -28,7 +28,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   const restOfContent = strategicAnalysisMatch ? result.replace(/## \[ STRATEGIC ANALYSIS COMPLETE \]/, '') : result;
   
   // Typewriter effect for the analysis content
-  const typedAnalysis = useTypewriter(startTypewriter ? restOfContent : '', 6);
+  const typedAnalysis = useTypewriter(startTypewriter ? restOfContent : '', 2.5);
 
   useEffect(() => {
     if (!containerRef.current || isRejected) return;
@@ -67,7 +67,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
         scale: 1,
         duration: 0.8,
         ease: 'back.out(1.7)'
-      }, '+=6'); // Wait for typewriter to complete
+      }, '+=3'); // Wait for typewriter to complete
 
     }, 500);
   };

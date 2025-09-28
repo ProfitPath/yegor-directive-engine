@@ -211,31 +211,45 @@ All colors MUST be HSL. No deviation permitted.
   /* MARKDOWN STYLING PROTOCOL - CRT Terminal Style */
   .analysis-container {
     position: relative;
-    background: #0a0a0a;
-    border: 2px solid #333;
-    border-radius: 8px;
+    background: #000000;
+    border: 3px solid #FFD700;
+    border-radius: 12px;
     padding: 2rem;
-    color: #39FF14;
+    color: #FFFF00;
     font-family: 'Press Start 2P', 'Roboto Mono', monospace;
-    text-shadow: 0 0 5px rgba(57, 255, 20, 0.5), 
-                 0 0 10px rgba(57, 255, 20, 0.3);
-    animation: screen-flicker 10s infinite;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8), 
+                 0 0 15px rgba(255, 255, 0, 0.5),
+                 0 0 25px rgba(255, 255, 0, 0.3);
+    animation: screen-flicker 3s infinite, crt-distortion 0.1s infinite;
+    box-shadow: inset 0 0 50px rgba(255, 255, 0, 0.1),
+                0 0 20px rgba(255, 255, 0, 0.3);
   }
 
   .analysis-container::before {
-    content: " ";
-    display: block;
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 2;
-    background-size: 100% 4px, 3px 100%;
+    bottom: 0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 0, 0.03) 2px,
+        rgba(255, 255, 0, 0.03) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 0.02),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.02)
+      );
+    z-index: 1;
     pointer-events: none;
-    border-radius: 6px;
+    border-radius: 9px;
+    animation: scanlines 0.1s linear infinite;
   }
 
   .analysis-container h2,
@@ -253,9 +267,10 @@ All colors MUST be HSL. No deviation permitted.
     font-size: 1.25rem !important;
     line-height: 1.8;
     margin-bottom: 32px;
-    border-bottom: 2px solid #39FF14;
+    border-bottom: 2px solid #FFFF00;
     padding-bottom: 16px;
     letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.9);
   }
   
   .analysis-container h3 {
@@ -264,6 +279,7 @@ All colors MUST be HSL. No deviation permitted.
     margin-bottom: 16px;
     line-height: 1.6;
     letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
   }
   
   .analysis-container p, .analysis-container li {
@@ -271,11 +287,13 @@ All colors MUST be HSL. No deviation permitted.
     line-height: 1.6;
     margin-bottom: 16px;
     max-width: 800px;
+    text-shadow: 0 0 6px rgba(255, 255, 0, 0.6);
   }
   
   .analysis-container strong {
-    color: #39FF14;
+    color: #FFD700;
     font-weight: normal;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
   }
 
   .analysis-container ul {
@@ -289,26 +307,41 @@ All colors MUST be HSL. No deviation permitted.
 
   .blinking-cursor {
     display: inline-block;
-    background-color: #39FF14;
+    background-color: #FFFF00;
     width: 1ch;
     height: 1.2rem;
     animation: blink 1s step-end infinite;
     margin-left: 4px;
     position: relative;
     z-index: 3;
+    box-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
   }
 
   @keyframes screen-flicker {
     0% { opacity: 1; }
-    49% { opacity: 1; }
-    50% { opacity: 0.95; }
-    51% { opacity: 1; }
+    25% { opacity: 0.97; }
+    50% { opacity: 0.94; }
+    75% { opacity: 0.98; }
     100% { opacity: 1; }
+  }
+
+  @keyframes crt-distortion {
+    0% { transform: scaleY(1); }
+    50% { transform: scaleY(0.999); }
+    100% { transform: scaleY(1); }
+  }
+
+  @keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
   }
 
   @keyframes blink {
     from, to { background-color: transparent; }
-    50% { background-color: #39FF14; }
+    50% { 
+      background-color: #FFFF00;
+      box-shadow: 0 0 12px rgba(255, 255, 0, 1);
+    }
   }
 
   /* DYNAMIC TEXTAREA STYLING */
