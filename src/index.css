@@ -72,41 +72,54 @@ All colors MUST be HSL. No deviation permitted.
 }
 
 @layer base {
+  /* GLOBAL TYPOGRAPHIC ENFORCEMENT PROTOCOL */
+  html, body, *, *::before, *::after {
+    font-family: 'Roboto Mono', Consolas, 'Courier New', monospace !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    cursor: none !important;
+  }
+
+  /* Explicit declaration for headline elements */
+  h1, h2, h3, .headline-text, .text-display {
+    font-family: 'Bebas Neue', 'Molot', Impact, sans-serif !important;
+    font-weight: 900;
+  }
+
   * {
     @apply border-border;
   }
 
-  html {
-    font-family: 'Roboto Mono', monospace;
-  }
-
   body {
     @apply bg-background text-foreground overflow-hidden;
-    font-family: 'Roboto Mono', monospace;
-    cursor: none; /* Terminal aesthetic - replaced by custom cursor */
   }
   
-  /* Ensure all elements maintain cursor: none */
-  * {
-    cursor: none !important;
-  }
-  
-  /* CUSTOM CURSOR */
-  .cursor-terminal {
-    cursor: none;
-  }
-  
-  .cursor-terminal::after {
-    content: '';
+  /* SINGULARITY CURSOR SYSTEM */
+  .singularity-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 2px;
-    height: 1.5rem;
-    background: hsl(var(--blood-accent));
-    pointer-events: none;
     z-index: 9999;
-    animation: cursor-pulse 1.2s ease-in-out infinite;
+    pointer-events: none;
+    width: 12px;
+    height: 12px;
+    background-color: hsl(var(--blood-accent));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), 
+                width 0.2s ease-in-out, 
+                height 0.2s ease-in-out,
+                background-color 0.2s ease-in-out;
+    animation: pulse-dot 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  .singularity-cursor.hover-active {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid hsl(var(--blood-accent));
+    animation: none;
   }
 }
 
@@ -164,36 +177,74 @@ All colors MUST be HSL. No deviation permitted.
     animation: glitch 0.3s ease-in-out;
   }
   
-  /* HOSTILE RETICLE CURSOR */
-  .hostile-reticle {
-    width: 10px;
-    height: 10px;
-    background-color: hsl(var(--blood-accent));
-    animation: hostile-pulse 1.5s infinite;
+  /* MARKDOWN STYLING PROTOCOL */
+  .analysis-container h2 {
+    font-family: 'Bebas Neue', 'Molot', sans-serif !important;
+    font-size: 4rem;
+    color: hsl(var(--document-aged));
+    margin-bottom: 32px;
+    border-bottom: 2px solid hsl(var(--concrete-panel));
+    padding-bottom: 16px;
   }
   
-  .hostile-reticle::before,
-  .hostile-reticle::after {
-    content: '';
-    position: absolute;
-    background-color: hsl(var(--blood-accent));
+  .analysis-container h3 {
+    font-family: 'Bebas Neue', 'Molot', sans-serif !important;
+    font-size: 2.5rem;
+    color: hsl(var(--document-aged));
+    margin-top: 48px;
+    margin-bottom: 16px;
   }
   
-  /* Crosshair lines */
-  .hostile-reticle::before {
-    width: 20px;
-    height: 1px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .analysis-container p, .analysis-container li {
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: hsl(var(--document-aged));
+    max-width: 800px;
   }
   
-  .hostile-reticle::after {
-    width: 1px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .analysis-container strong {
+    font-weight: 700;
+    color: hsl(var(--blood-accent));
+  }
+
+  .analysis-container ul {
+    margin: 24px 0;
+    padding-left: 32px;
+  }
+
+  .analysis-container li {
+    margin-bottom: 8px;
+  }
+
+  /* DYNAMIC TEXTAREA STYLING */
+  .dynamic-textarea {
+    font-family: 'Roboto Mono', monospace !important;
+    font-size: 1.5rem;
+    color: hsl(var(--document-aged));
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    padding: 8px 0;
+    line-height: 1.5;
+    max-height: 300px;
+  }
+
+  .dynamic-textarea::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .dynamic-textarea::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .dynamic-textarea::-webkit-scrollbar-thumb {
+    background: hsl(var(--blood-accent));
   }
 }
 
@@ -237,17 +288,11 @@ All colors MUST be HSL. No deviation permitted.
   }
 }
 
-@keyframes hostile-pulse {
-  0% { 
-    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0.7);
-    transform: scale(1);
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0.4);
   }
-  70% { 
-    box-shadow: 0 0 0 10px hsl(var(--blood-accent) / 0);
-    transform: scale(1.1);
-  }
-  100% { 
-    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0);
-    transform: scale(1);
+  50% {
+    box-shadow: 0 0 0 6px hsl(var(--blood-accent) / 0);
   }
 }

@@ -11,21 +11,10 @@ import { CustomCursor } from './CustomCursor';
 
 export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'ERROR';
 
-export interface ServiceRecommendation {
-  service_name: 'XVIRALITY' | 'INBADDIESWETRUST' | 'PRINTMONEY';
-  justification?: string;
-  analysis?: string;
-}
-
-export interface AnalysisResult {
-  primary_recommendations: ServiceRecommendation[];
-  secondary_analysis: ServiceRecommendation[];
-}
-
 export const SortingEngine = () => {
   const [state, setState] = useState<EngineState>('BOOT');
   const [userInput, setUserInput] = useState('');
-  const [result, setResult] = useState<AnalysisResult | null>(null);
+  const [result, setResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,9 +36,9 @@ export const SortingEngine = () => {
       // Simulate the 5-second processing sequence
       await new Promise(resolve => setTimeout(resolve, 5000));
       
-      // Mock API call - replace with actual implementation
-      const mockResult = analyzeMockInput(input);
-      setResult(mockResult);
+      // Strategic Analysis Engine
+      const analysisResult = analyzeObjective(input);
+      setResult(analysisResult);
       setState('RESULTS');
     } catch (error) {
       console.error('Analysis failed:', error);
@@ -62,116 +51,60 @@ export const SortingEngine = () => {
   const handleReset = () => {
     setState('IDLE');
     setUserInput('');
-    setResult(null);
+    setResult('');
   };
 
-  // Advanced AI analysis function - Precision Analysis Engine
-  const analyzeMockInput = (input: string): AnalysisResult => {
-    const lowerInput = input.toLowerCase();
+  // Strategic Analysis Engine - Ghost in the Machine
+  const analyzeObjective = (input: string): string => {
+    const lowercaseInput = input.toLowerCase();
     
-    // Determine primary recommendations based on advanced analysis
-    const primary_recommendations: ServiceRecommendation[] = [];
-    const secondary_analysis: ServiceRecommendation[] = [];
-    
-    // Multi-service detection
-    const isTwitterFocused = lowerInput.includes('twitter') || lowerInput.includes('x.com') || lowerInput.includes('followers') || lowerInput.includes('growth') || lowerInput.includes('viral') || lowerInput.includes('audience') || lowerInput.includes('threads');
-    const isUGCFocused = lowerInput.includes('ugc') || lowerInput.includes('content') || lowerInput.includes('video') || lowerInput.includes('ads') || lowerInput.includes('creators') || lowerInput.includes('roas') || lowerInput.includes('conversions');
-    const isInfoProductFocused = lowerInput.includes('course') || lowerInput.includes('info product') || lowerInput.includes('digital product') || lowerInput.includes('selling knowledge') || lowerInput.includes('guide') || lowerInput.includes('teach');
-    
-    // Primary recommendations logic
-    if (isTwitterFocused && isInfoProductFocused) {
-      primary_recommendations.push({
-        service_name: 'XVIRALITY',
-        justification: 'DETECTED AUDIENCE AMPLIFICATION VECTOR - Twitter growth protocol required for maximum reach'
-      });
-      primary_recommendations.push({
-        service_name: 'PRINTMONEY',
-        justification: 'DETECTED MONETIZATION INTENT - Info product protocol necessary for revenue conversion'
-      });
-      secondary_analysis.push({
-        service_name: 'INBADDIESWETRUST',
-        analysis: 'UGC content matrix could amplify both Twitter presence and product marketing effectiveness'
-      });
-    } else if (isUGCFocused && isInfoProductFocused) {
-      primary_recommendations.push({
-        service_name: 'INBADDIESWETRUST',
-        justification: 'DETECTED HIGH-CONVERSION CONTENT REQUIREMENT - UGC protocol essential for ad performance'
-      });
-      primary_recommendations.push({
-        service_name: 'PRINTMONEY',
-        justification: 'DETECTED KNOWLEDGE MONETIZATION VECTOR - Digital product framework required'
-      });
-      secondary_analysis.push({
-        service_name: 'XVIRALITY',
-        analysis: 'Twitter amplification could provide additional distribution channel for content strategy'
-      });
-    } else if (isTwitterFocused) {
-      primary_recommendations.push({
-        service_name: 'XVIRALITY',
-        justification: 'SOCIAL MEDIA AMPLIFICATION PROTOCOL ACTIVATED - Twitter dominance vector identified'
-      });
-      secondary_analysis.push(
-        {
-          service_name: 'INBADDIESWETRUST',
-          analysis: 'UGC content could enhance Twitter engagement and follower conversion rates'
-        },
-        {
-          service_name: 'PRINTMONEY',
-          analysis: 'Growing audience creates optimal conditions for info product monetization'
-        }
-      );
-    } else if (isUGCFocused) {
-      primary_recommendations.push({
-        service_name: 'INBADDIESWETRUST',
-        justification: 'CONTENT CREATION MATRIX INITIALIZED - High-conversion UGC protocol required'
-      });
-      secondary_analysis.push(
-        {
-          service_name: 'XVIRALITY',
-          analysis: 'Twitter amplification could maximize UGC content reach and engagement'
-        },
-        {
-          service_name: 'PRINTMONEY',
-          analysis: 'Proven content creation skills optimal foundation for info product development'
-        }
-      );
-    } else if (isInfoProductFocused) {
-      primary_recommendations.push({
-        service_name: 'PRINTMONEY',
-        justification: 'DIGITAL REVENUE OPTIMIZATION SEQUENCE DEPLOYED - Monetization protocol activated'
-      });
-      secondary_analysis.push(
-        {
-          service_name: 'XVIRALITY',
-          analysis: 'Twitter audience growth essential for info product distribution and sales'
-        },
-        {
-          service_name: 'INBADDIESWETRUST',
-          analysis: 'UGC content creation could provide powerful marketing assets for product promotion'
-        }
-      );
+    // Strategic analysis logic
+    if (lowercaseInput.includes('twitter') || lowercaseInput.includes('followers') || lowercaseInput.includes('viral') || lowercaseInput.includes('audience')) {
+      return `## [ PROTOCOL ANALYSIS INITIATED ]
+
+### Primary Recommendation: **Protocol XVIRALITY**
+Direct engagement vector detected. Your objective requires systematic audience acquisition and platform domination protocols.
+
+### Strategic Rationale:
+Your input "${input}" indicates a clear requirement for exponential growth mechanics. Protocol XVIRALITY deploys advanced engagement algorithms and viral coefficient optimization specifically designed for Twitter/X platform domination. This protocol has demonstrated consistent 10x-100x audience expansion rates across multiple deployment scenarios. The system leverages content velocity optimization, engagement cascade triggers, and algorithmic preference exploitation to achieve rapid, sustainable growth vectors.
+
+### Secondary Protocols & Tactical Assessment:
+* **Protocol INBADDIESWETRUST:** Secondary deployment vector. Once audience establishment is complete, UGC campaigns can leverage your established reach for monetization acceleration.
+* **Protocol PRINTMONEY:** Future-phase protocol. Requires existing audience infrastructure before deployment. Compatible with post-XVIRALITY operations for revenue maximization.
+
+### [ DIRECTIVE ]
+Deploy Protocol XVIRALITY immediately. Audience acquisition is the foundation of all subsequent operations.`;
+    } else if (lowercaseInput.includes('ads') || lowercaseInput.includes('ugc') || lowercaseInput.includes('video') || lowercaseInput.includes('content') || lowercaseInput.includes('roas')) {
+      return `## [ PROTOCOL ANALYSIS INITIATED ]
+
+### Primary Recommendation: **Protocol INBADDIESWETRUST**
+High-conversion content deployment vector identified. Your objective requires immediate UGC amplification protocols.
+
+### Strategic Rationale:
+Analysis of "${input}" reveals direct correlation with advertising optimization requirements. Protocol INBADDIESWETRUST provides access to elite, vetted content creators specializing in high-conversion UGC campaigns. The protocol features advanced creator matching algorithms, performance optimization systems, and conversion rate acceleration mechanisms. Deployment typically results in 300-500% ROAS improvement within first campaign cycle.
+
+### Secondary Protocols & Tactical Assessment:
+* **Protocol XVIRALITY:** Complementary organic reach amplification. Can reduce paid acquisition costs by 40-60% through audience pre-conditioning.
+* **Protocol PRINTMONEY:** Revenue diversification protocol. UGC traffic can be channeled into high-margin info product funnels for compound monetization.
+
+### [ DIRECTIVE ]
+Initialize Protocol INBADDIESWETRUST for immediate conversion rate optimization and revenue acceleration.`;
     } else {
-      // Default fallback - analyze based on general business intent
-      primary_recommendations.push({
-        service_name: 'PRINTMONEY',
-        justification: 'GENERAL BUSINESS OPTIMIZATION DETECTED - Revenue generation protocol recommended'
-      });
-      secondary_analysis.push(
-        {
-          service_name: 'XVIRALITY',
-          analysis: 'Twitter presence could provide customer acquisition and brand authority'
-        },
-        {
-          service_name: 'INBADDIESWETRUST',
-          analysis: 'Professional UGC content essential for modern digital marketing effectiveness'
-        }
-      );
+      return `## [ PROTOCOL ANALYSIS INITIATED ]
+
+### Primary Recommendation: **Protocol PRINTMONEY**
+Revenue generation and knowledge monetization vector detected. Your objective requires high-margin digital asset creation protocols.
+
+### Strategic Rationale:
+Your stated objective "${input}" indicates potential for knowledge-based product development and systematic revenue generation. Protocol PRINTMONEY provides comprehensive frameworks for creating, launching, and scaling high-margin digital products. The system includes market validation protocols, content architecture optimization, and automated sales funnel deployment mechanisms. Standard deployment achieves 6-7 figure revenue generation within 12-18 month cycles.
+
+### Secondary Protocols & Tactical Assessment:
+* **Protocol XVIRALITY:** Foundation-layer protocol. Audience acquisition provides ready market infrastructure for product deployment.
+* **Protocol INBADDIESWETRUST:** Acceleration protocol. UGC campaigns can rapidly scale customer acquisition for established products.
+
+### [ DIRECTIVE ]
+Commence Protocol PRINTMONEY development cycle. Knowledge monetization requires systematic execution of proven frameworks.`;
     }
-    
-    return {
-      primary_recommendations,
-      secondary_analysis
-    };
   };
 
   return (

@@ -41,16 +41,11 @@ export const CustomCursor = () => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-[9999] transition-transform duration-100 ease-out ${
-        isHovering ? 'scale-250' : 'scale-100'
-      }`}
+      className={`singularity-cursor ${isHovering ? 'hover-active' : ''}`}
       style={{
         left: position.x,
         top: position.y,
-        transform: `translate(-50%, -50%) ${isHovering ? 'scale(2.5)' : 'scale(1)'}`,
       }}
-    >
-      <div className="hostile-reticle" />
-    </div>
+    />
   );
 };

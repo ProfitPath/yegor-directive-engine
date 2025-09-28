@@ -142,7 +142,10 @@ export const ProcessingAnimation = ({ userInput }: ProcessingAnimationProps) => 
               className="text-mono-diagnostic text-shadow-whisper"
               style={{
                 animationDelay: `${index * 0.3}s`,
-                animation: 'fadeIn 0.5s ease-out forwards'
+                animationName: 'fadeIn',
+                animationDuration: '0.5s',
+                animationFillMode: 'forwards',
+                animationTimingFunction: 'ease-out'
               }}
             >
               {line}
@@ -158,7 +161,10 @@ export const ProcessingAnimation = ({ userInput }: ProcessingAnimationProps) => 
               className="text-mono-diagnostic text-shadow-whisper text-right"
               style={{
                 animationDelay: `${(index + Math.ceil(diagnosticLines.length / 2)) * 0.3}s`,
-                animation: 'fadeIn 0.5s ease-out forwards'
+                animationName: 'fadeIn',
+                animationDuration: '0.5s',
+                animationFillMode: 'forwards',
+                animationTimingFunction: 'ease-out'
               }}
             >
               {line}
