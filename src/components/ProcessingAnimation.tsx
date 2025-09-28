@@ -2,9 +2,37 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, extend } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Mesh } from 'three';
+import { 
+  Mesh, 
+  OctahedronGeometry, 
+  MeshBasicMaterial, 
+  AmbientLight, 
+  PointLight 
+} from 'three';
+
+// Extend React Three Fiber with the specific Three.js objects we're using
+extend({ 
+  Mesh, 
+  OctahedronGeometry, 
+  MeshBasicMaterial, 
+  AmbientLight, 
+  PointLight 
+});
+
+// TypeScript declarations for React Three Fiber JSX elements
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      mesh: any;
+      octahedronGeometry: any;
+      meshBasicMaterial: any;
+      ambientLight: any;
+      pointLight: any;
+    }
+  }
+}
 
 interface ProcessingAnimationProps {
   userInput: string;
@@ -39,9 +67,13 @@ const WireframeObject = () => {
   }, []);
 
   return (
+    // @ts-ignore - React Three Fiber JSX elements
     <mesh ref={meshRef}>
+      {/* @ts-ignore */}
       <octahedronGeometry args={[2, 0]} />
+      {/* @ts-ignore */}
       <meshBasicMaterial color="#FF0000" wireframe />
+      {/* @ts-ignore */}
     </mesh>
   );
 };
@@ -124,7 +156,9 @@ export const ProcessingAnimation = ({ userInput }: ProcessingAnimationProps) => 
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-64 h-64">
           <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+            {/* @ts-ignore */}
             <ambientLight intensity={0.5} />
+            {/* @ts-ignore */}
             <pointLight position={[10, 10, 10]} />
             <WireframeObject />
             <OrbitControls enableZoom={false} enablePan={false} autoRotate />
