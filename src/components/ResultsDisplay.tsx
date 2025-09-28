@@ -123,7 +123,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
         <div className="crt-monitor">
           <div ref={analysisRef} className="analysis-container mb-16">
             <div 
-              className="primary-text-style"
+              className="primary-text-style w-screen h-screen fixed inset-0 p-4 overflow-auto"
               dangerouslySetInnerHTML={{
                 __html: typedAnalysis
                   .replace(/\*\*(.*?)\*\*/g, '<strong class="accent-text-style">$1</strong>')
