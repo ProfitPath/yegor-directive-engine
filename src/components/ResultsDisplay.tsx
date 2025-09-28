@@ -93,7 +93,7 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   // Handle rejection display
   if (isRejected) {
     return (
-      <div ref={containerRef} className="flex-1 flex items-center justify-center">
+      <div ref={containerRef} className="w-full min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <div ref={analysisRef} className="rejection-message mb-16">
             <h1 className="text-display text-display-xl text-blood-accent">
@@ -116,14 +116,14 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
   }
 
   return (
-    <div ref={containerRef} className="flex-1 flex items-start justify-center min-h-screen">
+    <div ref={containerRef} className="w-full min-h-screen flex justify-center bg-background">
       <div className="w-full max-w-6xl px-8 py-16">
 
         {/* Analysis Results */}
-        <div className="crt-monitor w-full h-screen">
+        <div className="crt-monitor w-full max-h-[calc(100vh-8rem)] overflow-hidden">
           <div ref={analysisRef} className="analysis-container mb-16">
             <div 
-              className="primary-text-style w-full max-w-full h-full max-h-full overflow-y-auto break-words"
+              className="primary-text-style analysis-content w-full"
               dangerouslySetInnerHTML={{
                 __html: typedAnalysis
                   .replace(/\*\*(.*?)\*\*/g, '<strong class="accent-text-style">$1</strong>')

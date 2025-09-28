@@ -250,6 +250,18 @@ All colors MUST be HSL. No deviation permitted.
     border: none;
     padding: 2rem;
     z-index: 5;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Analysis content utility for robust wrapping inside CRT */
+  .analysis-content {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   /* TEXT STYLING CLASSES */
