@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'courier-prime': ['Courier Prime', 'Courier New', 'monospace'],
+        'soviet': ['Courier Prime', 'Courier New', 'monospace'],
+      },
       colors: {
         /* BRUTALIST PALETTE */
         'void': {
@@ -29,6 +33,10 @@ export default {
         },
         'blood': {
           accent: "hsl(var(--blood-accent))",
+        },
+        'soviet': {
+          green: "hsl(var(--soviet-green))",
+          dark: "hsl(var(--soviet-dark))",
         },
         
         /* SYSTEM MAPPINGS */

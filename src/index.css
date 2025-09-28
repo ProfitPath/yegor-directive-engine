@@ -8,12 +8,14 @@ All colors MUST be HSL. No deviation permitted.
 
 @layer base {
   :root {
-    /* CORE BRUTALIST PALETTE */
+/* CORE BRUTALIST PALETTE */
     --void-primary: 0 0% 4%;              /* #0A0A0A - The absolute void */
     --concrete-panel: 0 0% 8%;            /* #141414 - UI panel background */
     --document-aged: 0 0% 74%;            /* #BDBDBD - Primary readable text */
     --shadow-whisper: 0 0% 40%;           /* #666666 - Secondary/watermark text */
     --blood-accent: 0 100% 50%;           /* #FF0000 - The only accent color */
+    --soviet-green: 120 100% 50%;         /* #00FF00 - Soviet terminal green */
+    --soviet-dark: 120 100% 5%;           /* #001a00 - Soviet terminal dark bg */
     
     /* SYSTEM MAPPINGS */
     --background: var(--void-primary);
@@ -324,4 +326,121 @@ All colors MUST be HSL. No deviation permitted.
   50% {
     box-shadow: 0 0 0 6px hsl(var(--blood-accent) / 0);
   }
+}
+
+/* SOVIET TERMINAL STYLING */
+.soviet-terminal {
+  font-family: 'Courier Prime', 'Courier New', monospace !important;
+  background-color: hsl(var(--soviet-dark));
+  border: 2px solid hsl(var(--soviet-green));
+  border-radius: 0;
+  padding: 0;
+  margin: 2rem 0;
+  box-shadow: 
+    0 0 20px hsl(var(--soviet-green) / 0.3),
+    inset 0 0 20px hsl(var(--soviet-green) / 0.1);
+}
+
+.terminal-screen {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--soviet-dark)) 0%,
+    hsl(120 100% 3%) 100%
+  );
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.terminal-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(var(--soviet-green) / 0.03) 2px,
+    hsl(var(--soviet-green) / 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid hsl(var(--soviet-green) / 0.3);
+}
+
+.terminal-title {
+  color: hsl(var(--soviet-green));
+  font-size: 1rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px hsl(var(--soviet-green) / 0.8);
+  letter-spacing: 0.1em;
+}
+
+.terminal-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(var(--soviet-green));
+  font-size: 0.8rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: hsl(var(--soviet-green));
+  border-radius: 50%;
+  animation: pulse-soviet 1.5s infinite;
+}
+
+.terminal-content {
+  min-height: 200px;
+  padding: 1rem 0;
+}
+
+.terminal-text {
+  color: hsl(var(--soviet-green));
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px hsl(var(--soviet-green) / 0.6);
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+}
+
+.terminal-cursor {
+  color: hsl(var(--soviet-green));
+  animation: blink-cursor 1s infinite;
+  text-shadow: 0 0 10px hsl(var(--soviet-green));
+}
+
+.terminal-footer {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid hsl(var(--soviet-green) / 0.3);
+}
+
+.system-info {
+  color: hsl(var(--soviet-green) / 0.7);
+  font-size: 0.7rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+@keyframes pulse-soviet {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
