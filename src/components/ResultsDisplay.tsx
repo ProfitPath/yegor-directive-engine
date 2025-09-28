@@ -16,7 +16,6 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
   const analysisRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [startTypewriter, setStartTypewriter] = useState(false);
-  const [showContinueInput, setShowContinueInput] = useState(false);
   const [continueInput, setContinueInput] = useState('');
   
   // Check if this is a rejection
@@ -129,18 +128,60 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
 
         {/* Analysis Results */}
         <div className="crt-monitor w-full h-[calc(100vh-8rem)]">
-          <div ref={analysisRef} className="analysis-container mb-16 h-full overflow-auto">
-            <div 
-              className="primary-text-style analysis-content w-full"
-              dangerouslySetInnerHTML={{
-                __html: typedAnalysis
-                  .replace(/\*\*(.*?)\*\*/g, '<strong class="accent-text-style">$1</strong>')
-                  .replace(/^#{1,2}\s+(.+)$/gm, '<h2 class="accent-text-style">$1</h2>')
-                  .replace(/^#{3,6}\s+(.+)$/gm, '<h3 class="accent-text-style">$1</h3>')
-                  .replace(/\n/g, '<br/>')
-              }}
-            />
-            {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
+          <div ref={analysisRef} className="analysis-container mb-16 h-full overflow-auto flex flex-col">
+            <div className="flex-1 pb-4">
+              <div 
+                className="primary-text-style analysis-content w-full"
+                dangerouslySetInnerHTML={{
+                  __html: typedAnalysis
+                    .replace(/\*\*(.*?)\*\*/g, '<strong class="accent-text-style">$1</strong>')
+                    .replace(/^#{1,2}\s+(.+)$/gm, '<h2 class="accent-text-style">$1</h2>')
+                    .replace(/^#{3,6}\s+(.+)$/gm, '<h3 class="accent-text-style">$1</h3>')
+                    .replace(/\n/g, '<br/>')
+                }}
+              />
+              {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
+            </div>
+            
+            {/* Continue Discussion Input at Bottom */}
+            <div className="mt-auto pt-4 border-t border-shadow-edge/30">
+              <div className="relative">
+                <textarea
+                  value={continueInput}
+                  onChange={(e) => setContinueInput(e.target.value)}
+                  placeholder="Continue the discussion..."
+                  className="w-full h-20 bg-void-primary/10 border border-shadow-edge/50 text-document-aged placeholder-shadow-edge/60 p-3 text-sm focus:outline-none focus:border-blood-accent/50 transition-colors duration-200 resize-none"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      if (continueInput.trim()) {
+                        onContinueSubmit(continueInput.trim());
+                        setContinueInput('');
+                      }
+                    }
+                  }}
+                />
+                <div className="flex justify-end mt-2 space-x-4">
+                  <button
+                    onClick={() => setContinueInput('')}
+                    className="text-xs text-shadow-edge/60 hover:text-document-aged transition-colors duration-200"
+                  >
+                    CLEAR
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (continueInput.trim()) {
+                        onContinueSubmit(continueInput.trim());
+                        setContinueInput('');
+                      }
+                    }}
+                    className="text-xs text-blood-accent hover:text-document-aged transition-colors duration-200"
+                  >
+                    SEND
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -164,60 +205,7 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
           >
             [ REINITIALIZE PROTOCOL ]
           </button>
-          
-          <span className="text-shadow-whisper text-sm">|</span>
-          
-          <button
-            onClick={() => setShowContinueInput(!showContinueInput)}
-            className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
-          >
-            [ CONTINUE DISCUSSION ]
-          </button>
         </div>
-
-        {/* Continue Discussion Input */}
-        {showContinueInput && (
-          <div className="mb-8 w-full max-w-4xl mx-auto">
-            <div className="relative">
-              <textarea
-                value={continueInput}
-                onChange={(e) => setContinueInput(e.target.value)}
-                placeholder="Continue the discussion..."
-                className="dynamic-textarea w-full min-h-[120px] bg-void-primary/20 border border-shadow-edge text-document-aged placeholder-shadow-edge/60 p-4 focus:outline-none focus:border-blood-accent transition-colors duration-200"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    if (continueInput.trim()) {
-                      onContinueSubmit(continueInput.trim());
-                      setContinueInput('');
-                      setShowContinueInput(false);
-                    }
-                  }
-                }}
-              />
-              <div className="flex justify-between mt-4">
-                <button
-                  onClick={() => setShowContinueInput(false)}
-                  className="text-mono text-shadow-whisper hover:text-document-aged transition-colors duration-200 text-sm"
-                >
-                  [ CANCEL ]
-                </button>
-                <button
-                  onClick={() => {
-                    if (continueInput.trim()) {
-                      onContinueSubmit(continueInput.trim());
-                      setContinueInput('');
-                      setShowContinueInput(false);
-                    }
-                  }}
-                  className="text-mono text-shadow-whisper hover:text-blood-accent transition-colors duration-200 text-sm"
-                >
-                  [ SUBMIT ]
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* System Info */}
         <div className="flex justify-between text-mono-diagnostic text-shadow-whisper">
