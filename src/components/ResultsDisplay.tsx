@@ -120,9 +120,20 @@ export const ResultsDisplay = ({ result, onReset }: ResultsDisplayProps) => {
       <div className="w-full max-w-6xl px-8">
 
         {/* Analysis Results */}
-        <div ref={analysisRef} className="analysis-container mb-16">
-          <ReactMarkdown>{typedAnalysis}</ReactMarkdown>
-          {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
+        <div className="crt-monitor">
+          <div ref={analysisRef} className="analysis-container mb-16">
+            <div 
+              className="primary-text-style"
+              dangerouslySetInnerHTML={{
+                __html: typedAnalysis
+                  .replace(/\*\*(.*?)\*\*/g, '<strong class="accent-text-style">$1</strong>')
+                  .replace(/^#{1,2}\s+(.+)$/gm, '<h2 class="accent-text-style">$1</h2>')
+                  .replace(/^#{3,6}\s+(.+)$/gm, '<h3 class="accent-text-style">$1</h3>')
+                  .replace(/\n/g, '<br/>')
+              }}
+            />
+            {typedAnalysis.length < restOfContent.length && <span className="blinking-cursor"></span>}
+          </div>
         </div>
 
         {/* Engagement Button */}
