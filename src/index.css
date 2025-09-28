@@ -83,7 +83,12 @@ All colors MUST be HSL. No deviation permitted.
   body {
     @apply bg-background text-foreground overflow-hidden;
     font-family: 'Roboto Mono', monospace;
-    cursor: none; /* Terminal aesthetic */
+    cursor: none; /* Terminal aesthetic - replaced by custom cursor */
+  }
+  
+  /* Ensure all elements maintain cursor: none */
+  * {
+    cursor: none !important;
   }
   
   /* CUSTOM CURSOR */
@@ -158,6 +163,38 @@ All colors MUST be HSL. No deviation permitted.
   .animate-glitch {
     animation: glitch 0.3s ease-in-out;
   }
+  
+  /* HOSTILE RETICLE CURSOR */
+  .hostile-reticle {
+    width: 10px;
+    height: 10px;
+    background-color: hsl(var(--blood-accent));
+    animation: hostile-pulse 1.5s infinite;
+  }
+  
+  .hostile-reticle::before,
+  .hostile-reticle::after {
+    content: '';
+    position: absolute;
+    background-color: hsl(var(--blood-accent));
+  }
+  
+  /* Crosshair lines */
+  .hostile-reticle::before {
+    width: 20px;
+    height: 1px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .hostile-reticle::after {
+    width: 1px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @keyframes cursor-pulse {
@@ -197,5 +234,20 @@ All colors MUST be HSL. No deviation permitted.
   100% { 
     opacity: 1; 
     transform: translateY(0);
+  }
+}
+
+@keyframes hostile-pulse {
+  0% { 
+    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0.7);
+    transform: scale(1);
+  }
+  70% { 
+    box-shadow: 0 0 0 10px hsl(var(--blood-accent) / 0);
+    transform: scale(1.1);
+  }
+  100% { 
+    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0);
+    transform: scale(1);
   }
 }

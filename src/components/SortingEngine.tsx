@@ -7,13 +7,19 @@ import { PromptInput } from './PromptInput';
 import { ProcessingAnimation } from './ProcessingAnimation';
 import { ResultsDisplay } from './ResultsDisplay';
 import { BackgroundEffects } from './BackgroundEffects';
+import { CustomCursor } from './CustomCursor';
 
 export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'ERROR';
 
+export interface ServiceRecommendation {
+  service_name: 'XVIRALITY' | 'INBADDIESWETRUST' | 'PRINTMONEY';
+  justification?: string;
+  analysis?: string;
+}
+
 export interface AnalysisResult {
-  service: 'XVIRALITY' | 'INBADDIESWETRUST' | 'PRINTMONEY';
-  description: string;
-  url: string;
+  primary_recommendations: ServiceRecommendation[];
+  secondary_analysis: ServiceRecommendation[];
 }
 
 export const SortingEngine = () => {
@@ -59,29 +65,113 @@ export const SortingEngine = () => {
     setResult(null);
   };
 
-  // Mock analysis function - replace with actual API call
+  // Advanced AI analysis function - Precision Analysis Engine
   const analyzeMockInput = (input: string): AnalysisResult => {
     const lowerInput = input.toLowerCase();
     
-    if (lowerInput.includes('twitter') || lowerInput.includes('growth') || lowerInput.includes('viral') || lowerInput.includes('audience')) {
-      return {
-        service: 'XVIRALITY',
-        description: 'SOCIAL MEDIA AMPLIFICATION PROTOCOL ACTIVATED',
-        url: 'https://xvirality.pro'
-      };
-    } else if (lowerInput.includes('ugc') || lowerInput.includes('content') || lowerInput.includes('video') || lowerInput.includes('ads')) {
-      return {
-        service: 'INBADDIESWETRUST',
-        description: 'CONTENT CREATION MATRIX INITIALIZED',
-        url: 'https://inbaddieswetrust.pro'
-      };
+    // Determine primary recommendations based on advanced analysis
+    const primary_recommendations: ServiceRecommendation[] = [];
+    const secondary_analysis: ServiceRecommendation[] = [];
+    
+    // Multi-service detection
+    const isTwitterFocused = lowerInput.includes('twitter') || lowerInput.includes('x.com') || lowerInput.includes('followers') || lowerInput.includes('growth') || lowerInput.includes('viral') || lowerInput.includes('audience') || lowerInput.includes('threads');
+    const isUGCFocused = lowerInput.includes('ugc') || lowerInput.includes('content') || lowerInput.includes('video') || lowerInput.includes('ads') || lowerInput.includes('creators') || lowerInput.includes('roas') || lowerInput.includes('conversions');
+    const isInfoProductFocused = lowerInput.includes('course') || lowerInput.includes('info product') || lowerInput.includes('digital product') || lowerInput.includes('selling knowledge') || lowerInput.includes('guide') || lowerInput.includes('teach');
+    
+    // Primary recommendations logic
+    if (isTwitterFocused && isInfoProductFocused) {
+      primary_recommendations.push({
+        service_name: 'XVIRALITY',
+        justification: 'DETECTED AUDIENCE AMPLIFICATION VECTOR - Twitter growth protocol required for maximum reach'
+      });
+      primary_recommendations.push({
+        service_name: 'PRINTMONEY',
+        justification: 'DETECTED MONETIZATION INTENT - Info product protocol necessary for revenue conversion'
+      });
+      secondary_analysis.push({
+        service_name: 'INBADDIESWETRUST',
+        analysis: 'UGC content matrix could amplify both Twitter presence and product marketing effectiveness'
+      });
+    } else if (isUGCFocused && isInfoProductFocused) {
+      primary_recommendations.push({
+        service_name: 'INBADDIESWETRUST',
+        justification: 'DETECTED HIGH-CONVERSION CONTENT REQUIREMENT - UGC protocol essential for ad performance'
+      });
+      primary_recommendations.push({
+        service_name: 'PRINTMONEY',
+        justification: 'DETECTED KNOWLEDGE MONETIZATION VECTOR - Digital product framework required'
+      });
+      secondary_analysis.push({
+        service_name: 'XVIRALITY',
+        analysis: 'Twitter amplification could provide additional distribution channel for content strategy'
+      });
+    } else if (isTwitterFocused) {
+      primary_recommendations.push({
+        service_name: 'XVIRALITY',
+        justification: 'SOCIAL MEDIA AMPLIFICATION PROTOCOL ACTIVATED - Twitter dominance vector identified'
+      });
+      secondary_analysis.push(
+        {
+          service_name: 'INBADDIESWETRUST',
+          analysis: 'UGC content could enhance Twitter engagement and follower conversion rates'
+        },
+        {
+          service_name: 'PRINTMONEY',
+          analysis: 'Growing audience creates optimal conditions for info product monetization'
+        }
+      );
+    } else if (isUGCFocused) {
+      primary_recommendations.push({
+        service_name: 'INBADDIESWETRUST',
+        justification: 'CONTENT CREATION MATRIX INITIALIZED - High-conversion UGC protocol required'
+      });
+      secondary_analysis.push(
+        {
+          service_name: 'XVIRALITY',
+          analysis: 'Twitter amplification could maximize UGC content reach and engagement'
+        },
+        {
+          service_name: 'PRINTMONEY',
+          analysis: 'Proven content creation skills optimal foundation for info product development'
+        }
+      );
+    } else if (isInfoProductFocused) {
+      primary_recommendations.push({
+        service_name: 'PRINTMONEY',
+        justification: 'DIGITAL REVENUE OPTIMIZATION SEQUENCE DEPLOYED - Monetization protocol activated'
+      });
+      secondary_analysis.push(
+        {
+          service_name: 'XVIRALITY',
+          analysis: 'Twitter audience growth essential for info product distribution and sales'
+        },
+        {
+          service_name: 'INBADDIESWETRUST',
+          analysis: 'UGC content creation could provide powerful marketing assets for product promotion'
+        }
+      );
     } else {
-      return {
-        service: 'PRINTMONEY',
-        description: 'DIGITAL REVENUE OPTIMIZATION SEQUENCE DEPLOYED',
-        url: 'https://printmoney.pro'
-      };
+      // Default fallback - analyze based on general business intent
+      primary_recommendations.push({
+        service_name: 'PRINTMONEY',
+        justification: 'GENERAL BUSINESS OPTIMIZATION DETECTED - Revenue generation protocol recommended'
+      });
+      secondary_analysis.push(
+        {
+          service_name: 'XVIRALITY',
+          analysis: 'Twitter presence could provide customer acquisition and brand authority'
+        },
+        {
+          service_name: 'INBADDIESWETRUST',
+          analysis: 'Professional UGC content essential for modern digital marketing effectiveness'
+        }
+      );
     }
+    
+    return {
+      primary_recommendations,
+      secondary_analysis
+    };
   };
 
   return (
@@ -89,6 +179,9 @@ export const SortingEngine = () => {
       ref={containerRef}
       className="fixed inset-0 bg-void-primary overflow-hidden"
     >
+      {/* Custom Cursor */}
+      <CustomCursor />
+      
       {/* Background effects */}
       <BackgroundEffects />
       
