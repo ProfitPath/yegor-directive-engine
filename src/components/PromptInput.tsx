@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
+import { useTerminalText } from '../hooks/useTerminalText';
 
 interface PromptInputProps {
   onSubmit: (input: string) => void;
@@ -11,6 +12,22 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
   const [input, setInput] = useState('');
   const promptRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Terminal text animation
+  const terminalText = useTerminalText({
+    texts: [
+      'THE YEGOR METHOD',
+      'МОНОЛИТ',
+      'АППАРАТ', 
+      'СИСТЕМА «ЩИТ И МЕЧ»',
+      'ДОКТРИНА ГЛУБИНЫ',
+      'ОБЪЕКТ █▓▒░',
+      'THE YEGOR METHOD'
+    ],
+    typeSpeed: 80,
+    deleteSpeed: 40,
+    pauseTime: 1500
+  });
 
   useEffect(() => {
     // Focus the textarea on mount
@@ -64,9 +81,9 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
       <div className="w-full max-w-6xl px-4 sm:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
         {/* Protocol Header */}
         <div className="text-center mb-16">
-          <h2 className="text-display text-display-lg text-blood-accent mb-8">
-            [ YEGOR SORTING PROTOCOL ]
-          </h2>
+           <h2 className="text-display text-display-lg text-blood-accent mb-8 font-mono">
+             [ {terminalText}<span className="animate-pulse">█</span> ]
+           </h2>
           <div className="h-px bg-concrete-panel w-full mb-8" />
         </div>
 
