@@ -10,7 +10,7 @@ export function useTypewriter(fullText: string, durationInSeconds: number) {
     if (fullText) {
       // HIGH-VELOCITY PROTOCOL: Fixed delay for constant brutally fast speed
       const totalChars = fullText.length;
-      const delay = 15; // 15ms per character for maximum efficiency
+      const delay = 3; // 3ms per character for maximum efficiency
       let i = 0;
 
       const intervalId = setInterval(() => {
