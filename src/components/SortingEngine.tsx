@@ -1,14 +1,17 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { gsap } from 'gsap';
 import { BootSequence } from './BootSequence';
 import { PromptInput } from './PromptInput';
-import { ProcessingAnimation } from './ProcessingAnimation';
 import { ResultsDisplay } from './ResultsDisplay';
-import { BackgroundEffects } from './BackgroundEffects';
 import { CustomCursor } from './CustomCursor';
 import { supabase } from '@/integrations/supabase/client';
+
+// PHASE 1: CODE SPLITTING - Lazy load heavy 3D components
+const ProcessingAnimation = React.lazy(() => 
+  import('./ProcessingAnimation').then(module => ({ default: module.ProcessingAnimation }))
+);
 
 export type EngineState = 'BOOT' | 'IDLE' | 'PROCESSING' | 'RESULTS' | 'REJECTED' | 'ERROR';
 
@@ -121,14 +124,6 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
       {/* Custom Cursor */}
       <CustomCursor />
       
-      {/* Background effects */}
-      <BackgroundEffects />
-      
-      {/* Background texture/effects layer */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-concrete-panel/20 to-transparent" />
-      </div>
-      
       {/* Main content */}
       <div className="relative z-10 w-full h-full flex flex-col">
         {state === 'BOOT' && <BootSequence />}
@@ -138,7 +133,13 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
         )}
         
         {state === 'PROCESSING' && (
-          <ProcessingAnimation userInput={userInput} />
+          <Suspense fallback={
+            <div className="flex-1 flex items-center justify-center text-mono text-document-aged">
+              [ LOADING ANALYSIS MODULES... ]
+            </div>
+          }>
+            <ProcessingAnimation userInput={userInput} />
+          </Suspense>
         )}
         
         {(state === 'RESULTS' || state === 'REJECTED') && result && (

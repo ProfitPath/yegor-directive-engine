@@ -85,7 +85,7 @@ All colors MUST be HSL. No deviation permitted.
 
   /* Explicit declaration for headline elements */
   h1, h2, h3, .headline-text, .text-display {
-    font-family: 'Bebas Neue', 'Molot', Impact, sans-serif !important;
+    font-family: 'VT323', 'Roboto Mono', monospace !important;
     font-weight: 900;
   }
 
@@ -148,7 +148,7 @@ All colors MUST be HSL. No deviation permitted.
 @layer components {
   /* TYPOGRAPHY SYSTEM */
   .text-display {
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'VT323', 'Roboto Mono', monospace;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: -0.05em;
@@ -447,6 +447,30 @@ All colors MUST be HSL. No deviation permitted.
   50% {
     box-shadow: 0 0 0 6px hsl(var(--blood-accent) / 0);
   }
+}
+
+/* PHASE 2: STATIC NOISE OVERLAY - GPU-OPTIMIZED BACKGROUND */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 120, 120, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 120, 120, 0.2) 0%, transparent 50%);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+  animation: subtle-flicker 0.2s infinite;
+}
+
+@keyframes subtle-flicker {
+  0% { opacity: 0.03; }
+  50% { opacity: 0.04; }
+  100% { opacity: 0.03; }
 }
 
 /* SOVIET TERMINAL STYLING */
