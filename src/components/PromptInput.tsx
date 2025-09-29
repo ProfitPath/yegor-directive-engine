@@ -49,6 +49,36 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
     }
   }, []);
 
+  // Interface Override Protocol Animation
+  useEffect(() => {
+    const russianText = '.russian-text';
+    const strikethrough = '.russian-text .strikethrough';
+    const fauxCyrillicText = '.faux-cyrillic-text';
+
+    // GSAP Timeline for the override effect
+    const tl = gsap.timeline();
+
+    tl.to(russianText, {
+        delay: 2, // Start the animation 2 seconds after component loads
+        duration: 0.2,
+        opacity: 0.7, // Slightly fade the original text
+      })
+      .to(strikethrough, {
+        duration: 0.5,
+        width: '100%', // Animate the strikethrough across the text
+        ease: 'power2.inOut',
+      })
+      .to(russianText, {
+        duration: 0.3,
+        opacity: 0, // Fade out the original text completely
+      }, "-=0.2") // Overlap the animations slightly
+      .to(fauxCyrillicText, {
+        duration: 0.5,
+        opacity: 1, // Fade in the new text
+      });
+
+  }, []);
+
   // Auto-resize functionality
   useLayoutEffect(() => {
     const textarea = textareaRef.current;
@@ -90,9 +120,15 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
         {/* Input Section */}
         <div className="text-center">
           <div ref={promptRef} className="mb-12">
-            <p className="text-mono-prompt text-document-aged mb-4">
-              ОПИШИТЕ ВАШУ ЦЕЛЬ:
-            </p>
+            <div className="text-container relative text-center">
+              <p className="russian-text text-mono-prompt text-document-aged mb-4">
+                <span className="strikethrough"></span>
+                ОПИШИТЕ ВАШУ ЦЕЛЬ:
+              </p>
+              <p className="faux-cyrillic-text text-mono-prompt text-blood-accent mb-4">
+                SТАТЕ УОЦЯ DIЯЕСТIVЕ:
+              </p>
+            </div>
             <div className="relative w-full">
               <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 left-1/2 -translate-x-1/2">
                 [ CLASSIFIED INPUT ]
@@ -107,7 +143,7 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               className="dynamic-textarea text-center resize-none"
-              placeholder="ВВЕДИТЕ ПАРАМЕТРЫ ЗАДАЧИ..."
+              placeholder="IИРЦТ MISSIОИ РАЯАМЕТЕЯS..."
               rows={1}
               autoComplete="off"
               spellCheck={false}
