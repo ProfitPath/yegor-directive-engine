@@ -154,6 +154,20 @@ All colors MUST be HSL. No deviation permitted.
     letter-spacing: -0.05em;
     line-height: 0.85;
   }
+
+  /* ENHANCED NEON GLOW FOR BLOOD ACCENT TEXT */
+  .text-blood-accent.text-display {
+    color: hsl(var(--blood-accent));
+    text-shadow:
+      0 0 5px hsla(var(--blood-accent), 0.5),   /* Soft initial bloom */
+      0 0 10px hsla(var(--blood-accent), 0.7),  /* Stronger glow */
+      0 0 20px hsla(var(--blood-accent), 0.8),  /* Intense glow */
+      0 0 40px hsla(var(--blood-accent), 0.9),  /* Deep halo effect */
+      0 0 80px hsla(var(--blood-accent), 1),    /* Light bleed diffusion */
+      0 0 90px hsla(var(--blood-accent), 0.7),  /* Extended diffusion */
+      0 0 100px hsla(var(--blood-accent), 0.5); /* Outer atmospheric glow */
+    -webkit-text-stroke: 0.5px hsl(var(--blood-accent)); /* Edge definition */
+  }
   
   .text-display-xl {
     font-size: 8rem;
