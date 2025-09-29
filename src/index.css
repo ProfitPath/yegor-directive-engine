@@ -443,6 +443,16 @@ All colors MUST be HSL. No deviation permitted.
     background-color: hsl(var(--blood-accent));
     width: 0; /* Initially hidden, will be animated by GSAP */
   }
+
+  /* SYSTEM ALERT FLASH OVERLAY */
+  .override-flash-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: hsl(var(--blood-accent));
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9998;
+  }
 }
 
 @keyframes cursor-pulse {

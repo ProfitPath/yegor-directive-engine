@@ -51,32 +51,47 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
 
   // Interface Override Protocol Animation
   useEffect(() => {
-    const russianText = '.russian-text';
-    const strikethrough = '.russian-text .strikethrough';
-    const fauxCyrillicText = '.faux-cyrillic-text';
+    // Create red flash overlay for system alert effect
+    const flashOverlay = document.createElement('div');
+    flashOverlay.className = 'override-flash-overlay';
+    document.body.appendChild(flashOverlay);
 
     // GSAP Timeline for the override effect
     const tl = gsap.timeline();
 
-    tl.to(russianText, {
-        delay: 2, // Start the animation 2 seconds after component loads
-        duration: 0.2,
-        opacity: 0.7, // Slightly fade the original text
+    // System alert red flash
+    tl.to('.override-flash-overlay', {
+        delay: 1.8,
+        duration: 0.1,
+        opacity: 0.3,
+        yoyo: true,
+        repeat: 1,
       })
-      .to(strikethrough, {
+      .to('.russian-text', {
+        delay: 0.2, // Start text animation after flash
+        duration: 0.2,
+        opacity: 0.7,
+      })
+      .to('.russian-text .strikethrough', {
         duration: 0.5,
-        width: '100%', // Animate the strikethrough across the text
+        width: '100%',
         ease: 'power2.inOut',
       })
-      .to(russianText, {
+      .to('.russian-text', {
         duration: 0.3,
-        opacity: 0, // Fade out the original text completely
-      }, "-=0.2") // Overlap the animations slightly
-      .to(fauxCyrillicText, {
+        opacity: 0,
+      }, "-=0.2")
+      .to('.faux-cyrillic-text', {
         duration: 0.5,
-        opacity: 1, // Fade in the new text
+        opacity: 1,
       });
 
+    // Cleanup overlay on unmount
+    return () => {
+      if (document.body.contains(flashOverlay)) {
+        document.body.removeChild(flashOverlay);
+      }
+    };
   }, []);
 
   // Auto-resize functionality
