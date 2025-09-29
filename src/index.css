@@ -412,40 +412,6 @@ All colors MUST be HSL. No deviation permitted.
   .dynamic-textarea::-webkit-scrollbar-thumb {
     background: hsl(var(--blood-accent));
   }
-
-  /* INTERFACE OVERRIDE PROTOCOL - HACKED TEXT ANIMATION */
-  .text-container {
-    /* Fixed height to prevent layout shift during animation */
-    height: 2.25rem;
-    position: relative;
-  }
-
-  .russian-text,
-  .faux-cyrillic-text {
-    /* Position both texts in the exact same spot */
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    margin: 0;
-  }
-
-  .faux-cyrillic-text {
-    /* Hide the replacement text initially */
-    opacity: 0;
-  }
-
-  .russian-text .strikethrough {
-    /* The strikethrough line itself */
-    position: absolute;
-    left: 0;
-    top: 55%;
-    height: 3px;
-    background-color: hsl(var(--blood-accent));
-    width: 0; /* Initially hidden, will be animated by GSAP */
-    box-shadow: 0 0 5px hsl(var(--blood-accent));
-  }
 }
 
 @keyframes cursor-pulse {
