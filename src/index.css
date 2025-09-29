@@ -85,7 +85,7 @@ All colors MUST be HSL. No deviation permitted.
 
   /* Explicit declaration for headline elements */
   h1, h2, h3, .headline-text, .text-display {
-    font-family: 'VT323', 'Roboto Mono', monospace !important;
+    font-family: 'Orbitron', 'Roboto Mono', monospace !important;
     font-weight: 900;
   }
 
@@ -148,11 +148,11 @@ All colors MUST be HSL. No deviation permitted.
 @layer components {
   /* TYPOGRAPHY SYSTEM */
   .text-display {
-    font-family: 'VT323', 'Roboto Mono', monospace;
-    font-weight: 400;
+    font-family: 'Orbitron', 'Roboto Mono', monospace;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
+    letter-spacing: 0.1em;
+    line-height: 0.9;
   }
 
   /* ENHANCED NEON GLOW FOR BLOOD ACCENT TEXT */
