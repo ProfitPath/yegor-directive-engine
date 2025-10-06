@@ -49,50 +49,6 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
     }
   }, []);
 
-  // Interface Override Protocol Animation
-  useEffect(() => {
-    // Create red flash overlay for system alert effect
-    const flashOverlay = document.createElement('div');
-    flashOverlay.className = 'override-flash-overlay';
-    document.body.appendChild(flashOverlay);
-
-    // GSAP Timeline for the override effect
-    const tl = gsap.timeline();
-
-    // System alert red flash
-    tl.to('.override-flash-overlay', {
-        delay: 1.8,
-        duration: 0.1,
-        opacity: 0.3,
-        yoyo: true,
-        repeat: 1,
-      })
-      .to('.russian-text', {
-        delay: 0.2, // Start text animation after flash
-        duration: 0.2,
-        opacity: 0.7,
-      })
-      .to('.russian-text .strikethrough', {
-        duration: 0.5,
-        width: '100%',
-        ease: 'power2.inOut',
-      })
-      .to('.russian-text', {
-        duration: 0.3,
-        opacity: 0,
-      }, "-=0.2")
-      .to('.faux-cyrillic-text', {
-        duration: 0.5,
-        opacity: 1,
-      });
-
-    // Cleanup overlay on unmount
-    return () => {
-      if (document.body.contains(flashOverlay)) {
-        document.body.removeChild(flashOverlay);
-      }
-    };
-  }, []);
 
   // Auto-resize functionality
   useLayoutEffect(() => {
@@ -135,12 +91,6 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
         {/* Input Section */}
         <div className="text-center">
           <div ref={promptRef} className="mb-12">
-            <div className="text-container relative text-center">
-              <p className="russian-text text-mono-prompt text-document-aged mb-4">
-                <span className="strikethrough"></span>
-                ОПИШИТЕ ВАШУ ЦЕЛЬ:
-              </p>
-            </div>
             <div className="relative w-full">
               <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 left-1/2 -translate-x-1/2">
                 [ CLASSIFIED INPUT ]
