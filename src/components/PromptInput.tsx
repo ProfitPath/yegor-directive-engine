@@ -140,9 +140,6 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
                 <span className="strikethrough"></span>
                 ОПИШИТЕ ВАШУ ЦЕЛЬ:
               </p>
-              <p className="faux-cyrillic-text text-mono-prompt text-blood-accent mb-4">
-                SТАТЕ УОЦЯ DIЯЕСТIVЕ:
-              </p>
             </div>
             <div className="relative w-full">
               <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 left-1/2 -translate-x-1/2">
