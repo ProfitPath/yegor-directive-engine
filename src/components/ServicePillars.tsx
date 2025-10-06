@@ -4,13 +4,13 @@ import { gsap } from 'gsap';
 const services = [
   {
     name: 'XVIRALITY',
-    url: 'https://xvirality.com',
+    url: 'https://xvirality.pro',
     tagline: 'VIRAL DOMINATION',
     position: 'left'
   },
   {
     name: 'IN BADDIES WE TRUST',
-    url: 'https://inbaddieswetrust.com',
+    url: 'https://inbaddieswetrust.pro',
     tagline: 'ELITE NETWORK',
     position: 'center'
   },
