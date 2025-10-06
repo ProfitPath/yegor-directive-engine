@@ -53,56 +53,60 @@ export const ServicePillars = () => {
   return (
     <div ref={pillarsRef} className="fixed inset-0 pointer-events-none z-0">
       {/* Left Pillar */}
-      <a 
-        href={services[0].url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="pillar-left absolute left-0 top-0 h-full w-32 md:w-48 pointer-events-auto group"
-      >
+      <div className="pillar-left absolute left-0 top-0 h-full w-32 md:w-48 pointer-events-auto">
         <div className="h-full flex flex-col items-center justify-center relative">
           <div className="absolute inset-0 bg-gradient-to-r from-blood-accent/20 to-transparent blur-xl"></div>
-          <div className="writing-mode-vertical text-center">
-            <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
-                          group-hover:text-shadow-glow transition-all duration-300
-                          [writing-mode:vertical-rl] [text-orientation:mixed]">
-              {services[0].name}
+          <a 
+            href={services[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group"
+          >
+            <div className="writing-mode-vertical text-center">
+              <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
+                            group-hover:text-shadow-glow transition-all duration-300
+                            [writing-mode:vertical-rl] [text-orientation:mixed]">
+                {services[0].name}
+              </div>
+              <div className="text-xs md:text-sm text-mono text-document-aged/70 tracking-widest
+                            [writing-mode:vertical-rl] [text-orientation:mixed]">
+                {services[0].tagline}
+              </div>
             </div>
-            <div className="text-xs md:text-sm text-mono text-document-aged/70 tracking-widest
-                          [writing-mode:vertical-rl] [text-orientation:mixed]">
-              {services[0].tagline}
-            </div>
-          </div>
-          <div className="absolute inset-0 border-r-2 border-blood-accent/30 
-                        group-hover:border-blood-accent transition-all duration-300
-                        group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]"></div>
+            <div className="absolute inset-0 border-r-2 border-blood-accent/30 
+                          group-hover:border-blood-accent transition-all duration-300
+                          group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]"></div>
+          </a>
         </div>
-      </a>
+      </div>
 
       {/* Right Pillar */}
-      <a 
-        href={services[2].url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="pillar-right absolute right-0 top-0 h-full w-32 md:w-48 pointer-events-auto group"
-      >
+      <div className="pillar-right absolute right-0 top-0 h-full w-32 md:w-48 pointer-events-auto">
         <div className="h-full flex flex-col items-center justify-center relative">
           <div className="absolute inset-0 bg-gradient-to-l from-blood-accent/20 to-transparent blur-xl"></div>
-          <div className="writing-mode-vertical text-center">
-            <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
-                          group-hover:text-shadow-glow transition-all duration-300
-                          [writing-mode:vertical-rl] [text-orientation:mixed]">
-              {services[2].name}
+          <a 
+            href={services[2].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative group"
+          >
+            <div className="writing-mode-vertical text-center">
+              <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
+                            group-hover:text-shadow-glow transition-all duration-300
+                            [writing-mode:vertical-rl] [text-orientation:mixed]">
+                {services[2].name}
+              </div>
+              <div className="text-xs md:text-sm text-mono text-document-aged/70 tracking-widest
+                            [writing-mode:vertical-rl] [text-orientation:mixed]">
+                {services[2].tagline}
+              </div>
             </div>
-            <div className="text-xs md:text-sm text-mono text-document-aged/70 tracking-widest
-                          [writing-mode:vertical-rl] [text-orientation:mixed]">
-              {services[2].tagline}
-            </div>
-          </div>
-          <div className="absolute inset-0 border-l-2 border-blood-accent/30 
-                        group-hover:border-blood-accent transition-all duration-300
-                        group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]"></div>
+            <div className="absolute inset-0 border-l-2 border-blood-accent/30 
+                          group-hover:border-blood-accent transition-all duration-300
+                          group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]"></div>
+          </a>
         </div>
-      </a>
+      </div>
 
       {/* Center Top Pillar */}
       <div className="pillar-center absolute top-0 left-1/2 -translate-x-1/2 w-64 md:w-96 pointer-events-auto">
