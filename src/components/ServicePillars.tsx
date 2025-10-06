@@ -135,6 +135,33 @@ export const ServicePillars = () => {
         </div>
       </div>
 
+      {/* Bottom Pillar - Zolex */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 md:w-96 pointer-events-auto">
+        <div className="pb-4 md:pb-8">
+          <a 
+            href="https://zolex.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative z-10 group"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-t from-blood-accent/20 to-transparent blur-xl pointer-events-none"></div>
+              <div className="relative text-center border-t-2 border-blood-accent/30 pt-4
+                            group-hover:border-blood-accent transition-all duration-300
+                            group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]">
+                <div className="text-xl md:text-3xl font-display text-blood-accent mb-2 tracking-wider
+                              group-hover:text-shadow-glow transition-all duration-300">
+                  JOIN ZOLEX
+                </div>
+                <div className="text-xs md:text-sm text-mono text-document-aged/70 tracking-widest">
+                  COLLECTIVE POWER
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
       {/* Converging Lines to Center */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
         <defs>
@@ -157,6 +184,9 @@ export const ServicePillars = () => {
         
         {/* Top to center lines */}
         <line x1="50%" y1="10%" x2="50%" y2="50%" stroke="url(#lineGradient)" strokeWidth="1" />
+        
+        {/* Bottom to center lines */}
+        <line x1="50%" y1="90%" x2="50%" y2="50%" stroke="url(#lineGradient)" strokeWidth="1" />
       </svg>
     </div>
   );
