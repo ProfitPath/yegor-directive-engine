@@ -6,6 +6,7 @@ import { BootSequence } from './BootSequence';
 import { PromptInput } from './PromptInput';
 import { ResultsDisplay } from './ResultsDisplay';
 import { CustomCursor } from './CustomCursor';
+import { ServicePillars } from './ServicePillars';
 import { supabase } from '@/integrations/supabase/client';
 
 // PHASE 1: CODE SPLITTING - Lazy load heavy 3D components
@@ -121,6 +122,9 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
       id="master-container"
       className={`state-${state.toLowerCase()} ${state === 'RESULTS' || state === 'REJECTED' ? 'results-active' : ''}`}
     >
+      {/* Service Pillars */}
+      <ServicePillars />
+      
       {/* Custom Cursor */}
       <CustomCursor />
       
