@@ -60,10 +60,15 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
     }, '+=3'); // Wait for typewriter to complete
   }, [isRejected]);
 
+  // Determine which service is recommended
+  const getRecommendedService = () => {
+    if (result.includes('XVIRALITY')) return { name: 'XVIRALITY', url: 'https://xvirality.pro' };
+    if (result.includes('INBADDIESWETRUST')) return { name: 'INBADDIESWETRUST', url: 'https://inbaddieswetrust.pro' };
+    return { name: 'PRINTMONEY', url: 'https://printmoney.pro' };
+  };
+
   const handleEngageClick = () => {
-    // Determine service from analysis
-    const service = result.includes('XVIRALITY') ? 'XVIRALITY' : 
-                   result.includes('INBADDIESWETRUST') ? 'INBADDIESWETRUST' : 'PRINTMONEY';
+    const service = getRecommendedService();
     
     // Button press animation
     gsap.to(buttonRef.current, {
@@ -79,13 +84,8 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
           yoyo: true,
           repeat: 1,
           onComplete: () => {
-            // Navigate to the URL based on service
-            const urls = {
-              'XVIRALITY': 'https://xvirality.pro',
-              'INBADDIESWETRUST': 'https://inbaddieswetrust.pro',
-              'PRINTMONEY': 'https://printmoney.pro'
-            };
-            window.open(urls[service as keyof typeof urls], '_blank');
+            // Navigate to the service URL
+            window.open(service.url, '_blank');
           }
         });
       }
@@ -222,6 +222,19 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
                     SEND
                   </button>
                 </div>
+              </div>
+              
+              {/* Recommended Service Link */}
+              <div className="mt-4 pt-4 border-t border-shadow-edge/30 text-center">
+                <p className="text-mono-diagnostic text-shadow-whisper text-xs mb-2">RECOMMENDED SERVICE</p>
+                <a 
+                  href={getRecommendedService().url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-mono text-blood-accent hover:text-document-aged transition-colors duration-200 underline text-sm"
+                >
+                  {getRecommendedService().url}
+                </a>
               </div>
             </div>
           </div>
