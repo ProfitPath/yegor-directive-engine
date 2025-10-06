@@ -125,9 +125,6 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
       {/* Service Pillars - Only show during BOOT and IDLE states */}
       {(state === 'BOOT' || state === 'IDLE') && <ServicePillars />}
       
-      {/* Custom Cursor */}
-      <CustomCursor />
-      
       {/* Main content */}
       <div className="relative z-10 w-full h-full flex flex-col">
         {state === 'BOOT' && <BootSequence />}
