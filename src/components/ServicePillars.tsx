@@ -51,16 +51,16 @@ export const ServicePillars = () => {
   }, []);
 
   return (
-    <div ref={pillarsRef} className="fixed inset-0 pointer-events-none z-0">
+    <div ref={pillarsRef} className="fixed inset-0 pointer-events-none z-50">
       {/* Left Pillar */}
       <div className="pillar-left absolute left-0 top-0 h-full w-32 md:w-48 pointer-events-auto">
         <div className="h-full flex flex-col items-center justify-center relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blood-accent/20 to-transparent blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blood-accent/20 to-transparent blur-xl pointer-events-none"></div>
           <a 
             href={services[0].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group"
+            className="relative z-10 group"
           >
             <div className="writing-mode-vertical text-center">
               <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
@@ -83,12 +83,12 @@ export const ServicePillars = () => {
       {/* Right Pillar */}
       <div className="pillar-right absolute right-0 top-0 h-full w-32 md:w-48 pointer-events-auto">
         <div className="h-full flex flex-col items-center justify-center relative">
-          <div className="absolute inset-0 bg-gradient-to-l from-blood-accent/20 to-transparent blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-l from-blood-accent/20 to-transparent blur-xl pointer-events-none"></div>
           <a 
             href={services[2].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative group"
+            className="relative z-10 group"
           >
             <div className="writing-mode-vertical text-center">
               <div className="text-2xl md:text-4xl font-display text-blood-accent mb-4 tracking-wider
@@ -115,10 +115,10 @@ export const ServicePillars = () => {
             href={services[1].url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block group"
+            className="block relative z-10 group"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-b from-blood-accent/20 to-transparent blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-blood-accent/20 to-transparent blur-xl pointer-events-none"></div>
               <div className="relative text-center border-b-2 border-blood-accent/30 pb-4
                             group-hover:border-blood-accent transition-all duration-300
                             group-hover:shadow-[0_0_20px_rgba(255,59,59,0.5)]">
