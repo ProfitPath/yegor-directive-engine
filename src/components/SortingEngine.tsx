@@ -122,8 +122,8 @@ Please reinitialize the protocol in 60 seconds. If the issue persists, the syste
       id="master-container"
       className={`state-${state.toLowerCase()} ${state === 'RESULTS' || state === 'REJECTED' ? 'results-active' : ''}`}
     >
-      {/* Service Pillars */}
-      <ServicePillars />
+      {/* Service Pillars - Only show during BOOT and IDLE states */}
+      {(state === 'BOOT' || state === 'IDLE') && <ServicePillars />}
       
       {/* Custom Cursor */}
       <CustomCursor />
