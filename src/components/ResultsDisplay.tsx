@@ -225,15 +225,18 @@ export const ResultsDisplay = ({ result, onReset, onContinueSubmit }: ResultsDis
               </div>
               
               {/* Recommended Service Link */}
-              <div className="mt-4 pt-4 border-t border-shadow-edge/30 text-center">
-                <p className="text-mono-diagnostic text-shadow-whisper text-xs mb-2">RECOMMENDED SERVICE</p>
+              <div className="mt-8 pt-6 border-t-2 border-blood-accent/50">
+                <p className="text-mono-button text-shadow-whisper text-sm mb-4 text-center tracking-wider">RECOMMENDED SERVICE</p>
                 <a 
                   href={getRecommendedService().url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-mono text-blood-accent hover:text-document-aged transition-colors duration-200 underline text-sm"
+                  className="block text-center group relative px-8 py-6 border-2 border-blood-accent bg-blood-accent/10 hover:bg-blood-accent transition-all duration-200"
                 >
-                  {getRecommendedService().url}
+                  <span className="text-mono-button text-2xl text-blood-accent group-hover:text-void-primary transition-colors duration-200">
+                    {getRecommendedService().url}
+                  </span>
+                  <div className="absolute inset-0 bg-blood-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 -z-10" />
                 </a>
               </div>
             </div>
