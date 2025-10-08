@@ -137,6 +137,45 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
           <span className="text-center">SECURITY: CLASSIFIED</span>
           <span className="text-center sm:text-right">YEGOR_OS_V2.0</span>
         </div>
+
+        {/* Mobile Links */}
+        <div className="sm:hidden mt-8 px-4">
+          <div className="h-px bg-concrete-panel w-full mb-4" />
+          <div className="flex flex-col gap-3 text-center">
+            <a 
+              href="https://inbaddieswetrust.pro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-blood-accent hover:text-terminal-green transition-colors font-mono"
+            >
+              [ IN BADDIES WE TRUST ]
+            </a>
+            <a 
+              href="https://zolex.io" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-blood-accent hover:text-terminal-green transition-colors font-mono"
+            >
+              [ ZOLEX ]
+            </a>
+            <a 
+              href="https://printmoney.pro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-blood-accent hover:text-terminal-green transition-colors font-mono"
+            >
+              [ PRINT MONEY ]
+            </a>
+            <a 
+              href="https://xvirality.pro" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-blood-accent hover:text-terminal-green transition-colors font-mono"
+            >
+              [ XVIRALITY ]
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
