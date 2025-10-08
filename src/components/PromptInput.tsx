@@ -79,13 +79,13 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
 
   return (
     <div className="flex-1 flex items-center justify-center">
-      <div className="w-full max-w-6xl px-4 sm:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
+      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
         {/* Protocol Header */}
-        <div className="text-center mb-16">
-           <h2 className="text-display text-display-lg text-blood-accent mb-8 font-mono">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+           <h2 className="text-display text-2xl sm:text-3xl md:text-display-lg text-blood-accent mb-4 sm:mb-6 md:mb-8 font-mono break-words px-2">
              [ {terminalText}<span className="animate-pulse">█</span> ]
            </h2>
-          <div className="h-px bg-concrete-panel w-full mb-8" />
+          <div className="h-px bg-concrete-panel w-full mb-4 sm:mb-6 md:mb-8" />
         </div>
 
         {/* Input Section */}
@@ -122,20 +122,20 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
         </div>
 
         {/* Instructions */}
-        <div className="text-center mt-16">
-          <p className="text-mono-diagnostic text-shadow-whisper">
+        <div className="text-center mt-8 sm:mt-12 md:mt-16">
+          <p className="text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper px-2">
             [ PRESS ENTER TO INITIATE ANALYSIS PROTOCOL ]
           </p>
-          <p className="text-mono-diagnostic text-shadow-whisper mt-2">
+          <p className="text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper mt-2 px-2">
             [ SHIFT + ENTER FOR NEW LINE ]
           </p>
         </div>
 
         {/* System Info */}
-        <div className="flex justify-between mt-24 text-mono-diagnostic text-shadow-whisper">
-          <span>STATUS: AWAITING INPUT</span>
-          <span>SECURITY: CLASSIFIED</span>
-          <span>YEGOR_OS_V2.0</span>
+        <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 mt-12 sm:mt-16 md:mt-24 text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper px-2">
+          <span className="text-center sm:text-left">STATUS: AWAITING INPUT</span>
+          <span className="text-center">SECURITY: CLASSIFIED</span>
+          <span className="text-center sm:text-right">YEGOR_OS_V2.0</span>
         </div>
       </div>
     </div>

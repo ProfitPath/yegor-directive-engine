@@ -142,12 +142,32 @@ All colors MUST be HSL. No deviation permitted.
   }
   
   .text-display-xl {
-    font-size: 8rem;
+    font-size: 3rem;
   }
   
   .text-display-lg {
-    font-size: 4rem;
+    font-size: 2rem;
     letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 640px) {
+    .text-display-xl {
+      font-size: 5rem;
+    }
+    
+    .text-display-lg {
+      font-size: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-display-xl {
+      font-size: 8rem;
+    }
+    
+    .text-display-lg {
+      font-size: 4rem;
+    }
   }
   
   .text-mono {
@@ -185,14 +205,26 @@ All colors MUST be HSL. No deviation permitted.
     animation: glitch 0.3s ease-in-out;
   }
   
-  /* CRT MONITOR CONTAINER - FULL-SCREEN IMMERSION PROTOCOL */
+  /* CRT MONITOR CONTAINER - FULL-SCREEN IMMERSION PROTOCOL - MOBILE RESPONSIVE */
   .crt-monitor {
     position: relative;
     background-color: hsl(var(--background));
     width: 100%;
     min-height: 100vh; /* Fill viewport height while allowing growth */
-    padding: 4rem 5rem;
+    padding: 1.5rem;
     box-sizing: border-box;
+  }
+
+  @media (min-width: 640px) {
+    .crt-monitor {
+      padding: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .crt-monitor {
+      padding: 4rem 5rem;
+    }
   }
 
   .crt-monitor::before {
@@ -229,12 +261,12 @@ All colors MUST be HSL. No deviation permitted.
     animation: crt-interlace 0.05s linear infinite;
   }
 
-  /* ANALYSIS CONTAINER - UPDATED FOR RED OCTOBER PROTOCOL */
+  /* ANALYSIS CONTAINER - UPDATED FOR RED OCTOBER PROTOCOL - MOBILE RESPONSIVE */
   .analysis-container {
     position: relative;
     background: transparent;
     border: none;
-    padding: 2rem;
+    padding: 1rem;
     z-index: 5;
     height: 100%;
     max-height: 100%;
@@ -242,6 +274,18 @@ All colors MUST be HSL. No deviation permitted.
     scrollbar-gutter: stable both-edges;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+  }
+
+  @media (min-width: 640px) {
+    .analysis-container {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .analysis-container {
+      padding: 2rem;
+    }
   }
 
   /* Analysis content utility for robust wrapping inside CRT */
@@ -279,27 +323,70 @@ All colors MUST be HSL. No deviation permitted.
   }
 
   .analysis-container h2 {
-    font-size: 1.25rem !important;
-    line-height: 1.8;
-    margin-bottom: 32px;
+    font-size: 1rem !important;
+    line-height: 1.6;
+    margin-bottom: 20px;
     border-bottom: 2px solid #FF4500;
-    padding-bottom: 16px;
-    letter-spacing: 2px;
+    padding-bottom: 12px;
+    letter-spacing: 1.5px;
   }
   
   .analysis-container h3 {
-    font-size: 0.9rem !important;
-    margin-top: 48px;
-    margin-bottom: 16px;
-    line-height: 1.6;
-    letter-spacing: 1px;
+    font-size: 0.8rem !important;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.8px;
   }
   
   .analysis-container p, .analysis-container li {
-    font-size: 0.7rem !important;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    font-size: 0.65rem !important;
+    line-height: 1.5;
+    margin-bottom: 12px;
     max-width: 800px;
+  }
+
+  @media (min-width: 640px) {
+    .analysis-container h2 {
+      font-size: 1.15rem !important;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+    }
+    
+    .analysis-container h3 {
+      font-size: 0.85rem !important;
+      margin-top: 40px;
+      margin-bottom: 14px;
+    }
+    
+    .analysis-container p, .analysis-container li {
+      font-size: 0.68rem !important;
+      margin-bottom: 14px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .analysis-container h2 {
+      font-size: 1.25rem !important;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    
+    .analysis-container h3 {
+      font-size: 0.9rem !important;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+    }
+    
+    .analysis-container p, .analysis-container li {
+      font-size: 0.7rem !important;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
   }
   
   .analysis-container strong {
@@ -355,10 +442,10 @@ All colors MUST be HSL. No deviation permitted.
     50% { background-color: #333333; }
   }
 
-  /* DYNAMIC TEXTAREA STYLING */
+  /* DYNAMIC TEXTAREA STYLING - MOBILE RESPONSIVE */
   .dynamic-textarea {
     font-family: 'Roboto Mono', monospace !important;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: hsl(var(--document-aged));
     background-color: transparent;
     border: none;
@@ -371,6 +458,18 @@ All colors MUST be HSL. No deviation permitted.
     padding: 8px 0;
     line-height: 1.5;
     max-height: 300px;
+  }
+
+  @media (min-width: 640px) {
+    .dynamic-textarea {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .dynamic-textarea {
+      font-size: 1.5rem;
+    }
   }
 
   .dynamic-textarea::-webkit-scrollbar {

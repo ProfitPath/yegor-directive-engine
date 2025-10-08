@@ -51,7 +51,7 @@ export const ServicePillars = () => {
   }, []);
 
   return (
-    <div ref={pillarsRef} className="fixed inset-0 pointer-events-none z-50">
+    <div ref={pillarsRef} className="fixed inset-0 pointer-events-none z-50 hidden sm:block">
       {/* Left Pillar */}
       <div className="pillar-left absolute left-0 top-0 h-full w-32 md:w-48 pointer-events-auto">
         <div className="h-full flex flex-col items-center justify-center relative">
