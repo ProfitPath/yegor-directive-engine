@@ -79,9 +79,9 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
 
   return (
     <div className="flex-1 flex items-center justify-center">
-      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8 mx-auto flex flex-col justify-center items-center min-h-screen">
+      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8 mx-auto flex flex-col justify-center sm:justify-center items-center min-h-screen py-8 sm:py-0">
         {/* Protocol Header */}
-        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+        <div className="text-center mb-6 sm:mb-12 md:mb-16">
            <h2 className="text-display text-2xl sm:text-3xl md:text-display-lg text-blood-accent mb-4 sm:mb-6 md:mb-8 font-mono break-words px-2">
              [ {terminalText}<span className="animate-pulse">█</span> ]
            </h2>
@@ -90,7 +90,7 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
 
         {/* Input Section */}
         <div className="text-center">
-          <div ref={promptRef} className="mb-12">
+          <div ref={promptRef} className="mb-8 sm:mb-12">
             <div className="relative w-full">
               <span className="text-shadow-whisper text-mono-diagnostic absolute -top-6 left-1/2 -translate-x-1/2">
                 [ CLASSIFIED INPUT ]
@@ -122,7 +122,7 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
         </div>
 
         {/* Instructions */}
-        <div className="text-center mt-8 sm:mt-12 md:mt-16">
+        <div className="text-center mt-6 sm:mt-12 md:mt-16">
           <p className="text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper px-2">
             [ PRESS ENTER TO INITIATE ANALYSIS PROTOCOL ]
           </p>
@@ -132,14 +132,14 @@ export const PromptInput = ({ onSubmit }: PromptInputProps) => {
         </div>
 
         {/* System Info */}
-        <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 mt-12 sm:mt-16 md:mt-24 text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper px-2">
+        <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-4 mt-8 sm:mt-16 md:mt-24 text-xs sm:text-sm text-mono-diagnostic text-shadow-whisper px-2">
           <span className="text-center sm:text-left">STATUS: AWAITING INPUT</span>
           <span className="text-center">SECURITY: CLASSIFIED</span>
           <span className="text-center sm:text-right">YEGOR_OS_V2.0</span>
         </div>
 
         {/* Mobile Links */}
-        <div className="sm:hidden mt-8 px-4">
+        <div className="sm:hidden mt-6 px-4 mb-4">
           <div className="h-px bg-concrete-panel w-full mb-4" />
           <div className="flex flex-col gap-3 text-center">
             <a 
