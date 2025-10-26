@@ -25,7 +25,7 @@ export const modules: Module[] = [
   {
     code: "ZOLEX.ELITE",
     title: "zolex — elite gc",
-    desc: "Invite-only operators room. Escrowed deals. Zero-noise threads.",
+    desc: "badss gc with killers who ACTUALLY make $$$. no brokies",
     cta: { label: "[ REQUEST CHAMBER ACCESS ]", href: "https://zolex.io", external: true }
   },
   {
