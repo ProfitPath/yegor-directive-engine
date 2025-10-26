@@ -58,7 +58,7 @@ export default function ZolexLanding() {
             yegor method
           </h1>
           <p className="mt-3 text-sm text-[hsl(var(--text-muted))] md:text-base">
-            pitch-black systems for attention, distribution, and cashflow
+            how to operate and get shit done
           </p>
           <div className="mt-8 font-mono text-xs text-[hsl(var(--text-muted))]/70">
             {"> ACCESS GRANTED"}
