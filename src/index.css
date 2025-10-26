@@ -2,29 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ZOLEX DESIGN SYSTEM - ULTRA-MINIMAL HIGH-CONTRAST
-Pure black with neon accents. Translucent glass morphism.
+/* ZOLEX DESIGN SYSTEM - HOSTILE ELEGANCE / BLACK-SITE INTERFACE
+Pure black with red power accents. Sharp military precision.
 */
 
 @layer base {
   :root {
-    /* CORE ZOLEX PALETTE */
+    /* CORE ZOLEX PALETTE - COMMAND TERMINAL */
     --bg: 0 0% 0%;                        /* #000000 - Pure black */
-    --text: 0 0% 93%;                     /* #EDEDED - Off-white text */
-    --text-muted: 0 0% 61%;               /* #9CA3AF - Muted gray */
-    --accent-neon: 152 100% 74%;          /* #7CFFB2 - Neon mint/green */
-    --accent-blue: 215 100% 76%;          /* #8AB4FF - Neon blue */
-    --surface: 0 0% 100% / 0.04;          /* rgba(255,255,255,0.04) - Translucent surface */
-    --stroke: 0 0% 100% / 0.08;           /* rgba(255,255,255,0.08) - Hairline borders */
+    --text: 0 0% 100%;                    /* #FFFFFF - Command white */
+    --text-muted: 0 0% 45%;               /* #737373 - Inactive systems */
+    --accent-red: 0 100% 50%;             /* #FF0000 - Power red */
+    --accent-cyan: 180 100% 50%;          /* #00FFFF - Electric cyan */
+    --surface: 0 0% 5%;                   /* #0D0D0D - Terminal surface */
+    --stroke: 0 100% 50%;                 /* #FF0000 - Red hairline */
+    --stroke-inactive: 0 0% 20%;          /* #333333 - Gray hairline */
     
     /* SYSTEM MAPPINGS */
     --background: var(--bg);
     --foreground: var(--text);
     
-    --card: var(--bg);
+    --card: var(--surface);
     --card-foreground: var(--text);
     
-    --primary: var(--accent-neon);
+    --primary: var(--accent-red);
     --primary-foreground: var(--bg);
     
     --secondary: var(--surface);
@@ -33,17 +34,17 @@ Pure black with neon accents. Translucent glass morphism.
     --muted: var(--surface);
     --muted-foreground: var(--text-muted);
     
-    --accent: var(--accent-neon);
-    --accent-foreground: var(--bg);
+    --accent: var(--accent-red);
+    --accent-foreground: var(--text);
     
     --destructive: 0 84% 60%;
     --destructive-foreground: var(--text);
     
-    --border: var(--stroke);
-    --input: var(--stroke);
-    --ring: var(--accent-neon);
+    --border: var(--stroke-inactive);
+    --input: var(--stroke-inactive);
+    --ring: var(--accent-red);
     
-    --radius: 1rem;
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -73,18 +74,19 @@ Pure black with neon accents. Translucent glass morphism.
 }
 
 @layer base {
-  /* GLOBAL TYPOGRAPHY - MINIMAL SANS-SERIF */
+  /* GLOBAL TYPOGRAPHY - MONOSPACE COMMAND */
   html, body, *, *::before, *::after {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'IBM Plex Mono', 'Space Mono', 'Courier New', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  /* Headlines */
+  /* Headlines - Compressed tracking */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   * {
@@ -95,20 +97,97 @@ Pure black with neon accents. Translucent glass morphism.
     @apply bg-background text-foreground;
     margin: 0;
     padding: 0;
+    background: 
+      radial-gradient(ellipse at 20% 30%, rgba(255, 0, 0, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(0, 255, 255, 0.04) 0%, transparent 50%),
+      #000;
+    background-attachment: fixed;
+  }
+  
+  /* Scanlines overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    z-index: 9999;
+    opacity: 0.5;
   }
 }
 
 @layer components {
-  /* ZOLEX GLASS CARD */
-  .glass-card {
+  /* TERMINAL CARD */
+  .terminal-card {
     background: hsl(var(--surface));
-    border: 1px solid hsl(var(--stroke));
-    border-radius: 1rem;
+    border: 1px solid hsl(var(--stroke-inactive));
+    border-radius: 0;
   }
 
-  /* NEON GLOW EFFECT */
-  .neon-glow {
-    box-shadow: 0 0 40px hsl(var(--accent-neon) / 0.35);
+  /* RED POWER GLOW */
+  .red-glow {
+    text-shadow: 0 0 12px rgba(255, 0, 0, 0.5);
+  }
+  
+  /* GLITCH EFFECT */
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  .glitch-hover:hover {
+    animation: glitch 0.3s infinite;
+  }
+  
+  /* TYPING CURSOR */
+  @keyframes blink {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  .cursor-blink::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: hsl(var(--accent-red));
+  }
+  
+  /* SCANLINE SWEEP */
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
   }
 }
 
