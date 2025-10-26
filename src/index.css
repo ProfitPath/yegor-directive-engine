@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ZOLEX DESIGN SYSTEM - ULTRA-MINIMAL HIGH-CONTRAST
-Pure black with neon accents. Translucent glass morphism.
+/* YEGOR METHOD DESIGN SYSTEM - BLACK-SITE OPERATOR CONSOLE
+Pure black with blood-red accents. Terminal aesthetics. Hostile elegance.
 */
 
 @layer base {
   :root {
-    /* CORE ZOLEX PALETTE */
+    /* CORE PALETTE */
     --bg: 0 0% 0%;                        /* #000000 - Pure black */
     --text: 0 0% 93%;                     /* #EDEDED - Off-white text */
     --text-muted: 0 0% 61%;               /* #9CA3AF - Muted gray */
-    --accent-neon: 152 100% 74%;          /* #7CFFB2 - Neon mint/green */
-    --accent-blue: 215 100% 76%;          /* #8AB4FF - Neon blue */
+    --accent: 0 90% 55%;                  /* #FF1A1A - Blood red */
+    --accent2: 152 100% 74%;              /* #7CFFB2 - Neon mint (sparingly) */
     --surface: 0 0% 100% / 0.04;          /* rgba(255,255,255,0.04) - Translucent surface */
     --stroke: 0 0% 100% / 0.08;           /* rgba(255,255,255,0.08) - Hairline borders */
+    --glow: 0 90% 55% / 0.28;             /* Red glow */
     
     /* SYSTEM MAPPINGS */
     --background: var(--bg);
@@ -24,7 +25,7 @@ Pure black with neon accents. Translucent glass morphism.
     --card: var(--bg);
     --card-foreground: var(--text);
     
-    --primary: var(--accent-neon);
+    --primary: var(--accent);
     --primary-foreground: var(--bg);
     
     --secondary: var(--surface);
@@ -33,17 +34,17 @@ Pure black with neon accents. Translucent glass morphism.
     --muted: var(--surface);
     --muted-foreground: var(--text-muted);
     
-    --accent: var(--accent-neon);
-    --accent-foreground: var(--bg);
+    --accent-color: var(--accent);
+    --accent-foreground: var(--text);
     
     --destructive: 0 84% 60%;
     --destructive-foreground: var(--text);
     
     --border: var(--stroke);
     --input: var(--stroke);
-    --ring: var(--accent-neon);
+    --ring: var(--accent);
     
-    --radius: 1rem;
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -67,24 +68,29 @@ Pure black with neon accents. Translucent glass morphism.
     --bg: 0 0% 0%;
     --text: 0 0% 93%;
     --text-muted: 0 0% 61%;
-    --accent-neon: 152 100% 74%;
-    --accent-blue: 215 100% 76%;
+    --accent: 0 90% 55%;
+    --accent2: 152 100% 74%;
   }
 }
 
 @layer base {
-  /* GLOBAL TYPOGRAPHY - MINIMAL SANS-SERIF */
+  /* GLOBAL TYPOGRAPHY - TERMINAL AESTHETICS */
   html, body, *, *::before, *::after {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
+  /* Monospace for terminal elements */
+  .font-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+  }
+
   /* Headlines */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.025em;
   }
 
   * {
@@ -99,16 +105,58 @@ Pure black with neon accents. Translucent glass morphism.
 }
 
 @layer components {
-  /* ZOLEX GLASS CARD */
-  .glass-card {
-    background: hsl(var(--surface));
-    border: 1px solid hsl(var(--stroke));
-    border-radius: 1rem;
+  /* SCANLINES EFFECT */
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    mix-blend-mode: soft-light;
+    z-index: 1;
   }
 
-  /* NEON GLOW EFFECT */
-  .neon-glow {
-    box-shadow: 0 0 40px hsl(var(--accent-neon) / 0.35);
+  /* RED VIGNETTE */
+  .vignette::after {
+    content: "";
+    position: absolute;
+    inset: -20vmax;
+    pointer-events: none;
+    background: radial-gradient(40% 30% at 10% 90%, rgba(255, 0, 0, 0.10), transparent 60%),
+                radial-gradient(35% 30% at 90% 10%, rgba(255, 0, 0, 0.06), transparent 60%);
+    filter: blur(30px);
+    z-index: 0;
+  }
+
+  /* RED GLOW EFFECT */
+  .shadow-glow {
+    box-shadow: 0 0 32px hsl(var(--glow));
+  }
+
+  /* FLICKER ANIMATION */
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+  }
+
+  .flicker {
+    animation: flicker 12s ease-in-out infinite;
+  }
+
+  /* TYPING CURSOR */
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
   }
 }
 
