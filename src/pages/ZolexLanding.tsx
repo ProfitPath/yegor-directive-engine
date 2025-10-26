@@ -65,11 +65,8 @@ export default function ZolexLanding() {
       </section>
 
       {/* PROTOCOL CONSOLE */}
-      <section id="protocols" className="relative mx-auto max-w-3xl px-4 py-12">
-        <div className="mb-4 font-mono text-xs text-[hsl(var(--text-muted))]/70 text-center">
-          what can yegor do for you, neo?
-        </div>
-        <div className="space-y-2">
+      <section id="protocols" className="relative mx-auto max-w-[700px] px-4 py-12">
+        <div className="rounded-md border border-white/[0.08] bg-black overflow-hidden">
           {modules.map((m, i) => <ModuleRow key={m.code} {...m} defaultOpen={i === 0} />)}
         </div>
       </section>

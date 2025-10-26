@@ -13,31 +13,31 @@ export const modules: Module[] = [
   {
     code: "TWITTER.VIRAL",
     title: "badass twitter virality",
-    desc: "viral organic twitter growth, from the best in the fucking game",
+    desc: "threads, hooks, memes, and narrative arcs that rip through the feed. impressions → pipeline.",
     cta: { label: "[ DEPLOY VIRAL OPS ]", href: "#contact" }
   },
   {
     code: "UGC.MODELS",
-    title: "ugc with hot models",
-    desc: "i got hot girls from shithole countries and made then film ads.",
+    title: "ugc with elite creators",
+    desc: "conversion-optimized ugc pipelines. casting → briefs → edits → deliverables. heat without chaos.",
     cta: { label: "[ BOOK CREATOR OPS ]", href: "#contact" }
   },
   {
     code: "ZOLEX.ELITE",
-    title: "THE rolex of group chats",
-    desc: "badss gc with killers who ACTUALLY make $$$. no brokies",
+    title: "the black-site group chat",
+    desc: "operators only. escrowed deals, zero-noise threads, receipts > opinions.",
     cta: { label: "[ REQUEST CHAMBER ACCESS ]", href: "https://zolex.io", external: true }
   },
   {
     code: "SCALE.SUITE",
     title: "scale suite — free telegram",
-    desc: "Daily ops notes, prompts, executable playbooks. Free feed.",
+    desc: "daily ops notes, prompts, executable playbooks. free feed; pay with attention.",
     cta: { label: "[ JOIN TELEGRAM ]", href: "https://t.me/scaleSuite", external: true }
   },
   {
     code: "PRINTMONEY.PRO",
     title: "info-prod sauce",
-    desc: "Frameworks and templates that sell. Productize → funnel → distribute.",
+    desc: "frameworks and templates that sell. productize → funnel → distribute.",
     cta: { label: "[ GET THE SAUCE ]", href: "https://printmoney.pro", external: true }
   }
 ];

@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Module } from "@/lib/modules";
 
 interface ModuleRowProps extends Module {
@@ -8,41 +5,27 @@ interface ModuleRowProps extends Module {
 }
 
 export function ModuleRow({ code, title, desc, cta, defaultOpen = false }: ModuleRowProps) {
-  const [open, setOpen] = useState(defaultOpen);
-
   return (
-    <div className={`border border-[var(--stroke)] bg-[var(--surface)] transition-all duration-120 ${open ? 'shadow-glow border-[hsl(var(--accent))]' : ''}`}>
-      <button
-        className="w-full grid grid-cols-[160px_1fr_auto] items-center gap-4 px-4 py-3 text-left hover:shadow-glow hover:border-[hsl(var(--accent))] transition-all duration-120"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-      >
-        <span className="font-mono text-sm text-[hsl(var(--accent))] flicker">[ {code} ]</span>
-        <span className="text-sm md:text-base">{title}</span>
-        <ChevronDown className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          >
-            <div className="px-4 pb-4 text-sm text-[hsl(var(--text-muted))]">{desc}</div>
-            <div className="px-4 pb-4">
-              <a
-                href={cta.href}
-                target={cta.external ? '_blank' : undefined}
-                rel={cta.external ? 'noreferrer noopener' : undefined}
-                className="inline-flex items-center border border-[var(--stroke)] px-4 py-2 text-xs font-mono tracking-wide hover:border-[hsl(var(--accent))] hover:text-white hover:shadow-glow transition-all will-change-transform"
-              >
-                {cta.label}
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    <details className="border-b border-white/[0.08] last:border-b-0" open={defaultOpen}>
+      <summary className="flex items-center gap-3 px-4 py-3.5 md:py-4 cursor-pointer list-none text-[hsl(var(--text))] text-[0.98rem] transition-colors duration-150 hover:bg-white/[0.03] [&::-webkit-details-marker]:hidden open:bg-white/[0.02]">
+        <span className="font-mono text-[0.84rem] tracking-[0.12em] uppercase text-white/90">
+          [ {code} ]
+        </span>
+        <span className="font-medium flex-1">{title}</span>
+      </summary>
+      <div className="px-4 pb-4 pl-8 md:pl-10">
+        <p className="mt-1.5 text-[0.95rem] leading-[1.55] text-[hsl(var(--text-muted))]">
+          {desc}
+        </p>
+        <a
+          href={cta.href}
+          target={cta.external ? '_blank' : undefined}
+          rel={cta.external ? 'noreferrer noopener' : undefined}
+          className="mt-3.5 inline-block border border-white/15 px-3.5 py-2.5 font-mono text-[0.8rem] tracking-[0.12em] text-[hsl(var(--text))] no-underline transition-colors duration-150 hover:border-white/70 hover:text-white"
+        >
+          {cta.label}
+        </a>
+      </div>
+    </details>
   );
 }
