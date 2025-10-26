@@ -2,48 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* YEGOR METHOD DESIGN SYSTEM - BRUTAL DIGITAL ARCHITECTURE
-All colors MUST be HSL. No deviation permitted.
+/* ZOLEX DESIGN SYSTEM - ULTRA-MINIMAL HIGH-CONTRAST
+Pure black with neon accents. Translucent glass morphism.
 */
 
 @layer base {
   :root {
-/* CORE BRUTALIST PALETTE */
-    --void-primary: 0 0% 4%;              /* #0A0A0A - The absolute void */
-    --concrete-panel: 0 0% 8%;            /* #141414 - UI panel background */
-    --document-aged: 0 0% 74%;            /* #BDBDBD - Primary readable text */
-    --shadow-whisper: 0 0% 40%;           /* #666666 - Secondary/watermark text */
-    --blood-accent: 0 100% 50%;           /* #FF0000 - The only accent color */
-    --soviet-green: 120 100% 50%;         /* #00FF00 - Soviet terminal green */
-    --soviet-dark: 120 100% 5%;           /* #001a00 - Soviet terminal dark bg */
+    /* CORE ZOLEX PALETTE */
+    --bg: 0 0% 0%;                        /* #000000 - Pure black */
+    --text: 0 0% 93%;                     /* #EDEDED - Off-white text */
+    --text-muted: 0 0% 61%;               /* #9CA3AF - Muted gray */
+    --accent-neon: 152 100% 74%;          /* #7CFFB2 - Neon mint/green */
+    --accent-blue: 215 100% 76%;          /* #8AB4FF - Neon blue */
+    --surface: 0 0% 100% / 0.04;          /* rgba(255,255,255,0.04) - Translucent surface */
+    --stroke: 0 0% 100% / 0.08;           /* rgba(255,255,255,0.08) - Hairline borders */
     
     /* SYSTEM MAPPINGS */
-    --background: var(--void-primary);
-    --foreground: var(--document-aged);
+    --background: var(--bg);
+    --foreground: var(--text);
     
-    --card: var(--concrete-panel);
-    --card-foreground: var(--document-aged);
+    --card: var(--bg);
+    --card-foreground: var(--text);
     
-    --primary: var(--blood-accent);
-    --primary-foreground: var(--document-aged);
+    --primary: var(--accent-neon);
+    --primary-foreground: var(--bg);
     
-    --secondary: var(--concrete-panel);
-    --secondary-foreground: var(--document-aged);
+    --secondary: var(--surface);
+    --secondary-foreground: var(--text);
     
-    --muted: var(--concrete-panel);
-    --muted-foreground: var(--shadow-whisper);
+    --muted: var(--surface);
+    --muted-foreground: var(--text-muted);
     
-    --accent: var(--blood-accent);
-    --accent-foreground: var(--document-aged);
+    --accent: var(--accent-neon);
+    --accent-foreground: var(--bg);
     
-    --destructive: var(--blood-accent);
-    --destructive-foreground: var(--document-aged);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--text);
     
-    --border: var(--concrete-panel);
-    --input: var(--concrete-panel);
-    --ring: var(--blood-accent);
+    --border: var(--stroke);
+    --input: var(--stroke);
+    --ring: var(--accent-neon);
     
-    --radius: 0;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -62,30 +62,29 @@ All colors MUST be HSL. No deviation permitted.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* BRUTALISM HAS NO LIGHT MODE - ONLY THE VOID */
+  /* DARK MODE (SAME AS DEFAULT) */
   .dark {
-    /* Dark mode uses same brutal palette */
-    --void-primary: 0 0% 4%;
-    --concrete-panel: 0 0% 8%;
-    --document-aged: 0 0% 74%;
-    --shadow-whisper: 0 0% 40%;
-    --blood-accent: 0 100% 50%;
+    --bg: 0 0% 0%;
+    --text: 0 0% 93%;
+    --text-muted: 0 0% 61%;
+    --accent-neon: 152 100% 74%;
+    --accent-blue: 215 100% 76%;
   }
 }
 
 @layer base {
-  /* GLOBAL TYPOGRAPHIC ENFORCEMENT PROTOCOL */
+  /* GLOBAL TYPOGRAPHY - MINIMAL SANS-SERIF */
   html, body, *, *::before, *::after {
-    font-family: 'Roboto Mono', Consolas, 'Courier New', monospace !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  /* Explicit declaration for headline elements */
-  h1, h2, h3, .headline-text, .text-display {
-    font-family: 'Orbitron', 'Roboto Mono', monospace !important;
-    font-weight: 900;
+  /* Headlines */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   * {
@@ -96,622 +95,20 @@ All colors MUST be HSL. No deviation permitted.
     @apply bg-background text-foreground;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent accidental browser scrollbars */
-  }
-  
-  /* MASTER CONTAINER - GRID CENTERING PROTOCOL */
-  #master-container {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    place-items: center; /* Default: perfectly centered */
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden; /* No scroll by default */
-  }
-
-  /* STATE-BASED OVERRIDE: Enable scroll when results are active */
-  #master-container.results-active {
-    place-items: start center; /* Align content to the top, centered horizontally */
-    overflow-y: auto;          /* Enable vertical scrolling only in this state */
   }
 }
 
 @layer components {
-  /* TYPOGRAPHY SYSTEM */
-  .text-display {
-    font-family: 'Orbitron', 'Roboto Mono', monospace;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    line-height: 0.9;
+  /* ZOLEX GLASS CARD */
+  .glass-card {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--stroke));
+    border-radius: 1rem;
   }
 
-  /* ENHANCED NEON GLOW FOR BLOOD ACCENT TEXT */
-  .text-blood-accent.text-display {
-    color: hsl(var(--blood-accent));
-    text-shadow:
-      0 0 5px hsla(var(--blood-accent), 0.5),   /* Soft initial bloom */
-      0 0 10px hsla(var(--blood-accent), 0.7),  /* Stronger glow */
-      0 0 20px hsla(var(--blood-accent), 0.8),  /* Intense glow */
-      0 0 40px hsla(var(--blood-accent), 0.9),  /* Deep halo effect */
-      0 0 80px hsla(var(--blood-accent), 1),    /* Light bleed diffusion */
-      0 0 90px hsla(var(--blood-accent), 0.7),  /* Extended diffusion */
-      0 0 100px hsla(var(--blood-accent), 0.5); /* Outer atmospheric glow */
-    -webkit-text-stroke: 0.5px hsl(var(--blood-accent)); /* Edge definition */
-  }
-  
-  .text-display-xl {
-    font-size: 3rem;
-  }
-  
-  .text-display-lg {
-    font-size: 2rem;
-    letter-spacing: -0.02em;
-  }
-
-  @media (min-width: 640px) {
-    .text-display-xl {
-      font-size: 5rem;
-    }
-    
-    .text-display-lg {
-      font-size: 3rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .text-display-xl {
-      font-size: 8rem;
-    }
-    
-    .text-display-lg {
-      font-size: 4rem;
-    }
-  }
-  
-  .text-mono {
-    font-family: 'Roboto Mono', monospace;
-  }
-  
-  .text-mono-prompt {
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-  
-  .text-mono-diagnostic {
-    font-size: 0.75rem;
-    font-weight: 300;
-  }
-  
-  .text-mono-button {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  
-  /* ANIMATIONS */
-  .animate-cursor-pulse {
-    animation: cursor-pulse 1.2s ease-in-out infinite;
-  }
-  
-  .animate-breathing {
-    animation: breathing 4s ease-in-out infinite;
-  }
-  
-  .animate-glitch {
-    animation: glitch 0.3s ease-in-out;
-  }
-  
-  /* CRT MONITOR CONTAINER - FULL-SCREEN IMMERSION PROTOCOL - MOBILE RESPONSIVE */
-  .crt-monitor {
-    position: relative;
-    background-color: hsl(var(--background));
-    width: 100%;
-    min-height: 100vh; /* Fill viewport height while allowing growth */
-    padding: 1.5rem;
-    box-sizing: border-box;
-  }
-
-  @media (min-width: 640px) {
-    .crt-monitor {
-      padding: 2.5rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .crt-monitor {
-      padding: 4rem 5rem;
-    }
-  }
-
-  .crt-monitor::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at center, 
-      rgba(255,255,255,0) 0%, 
-      rgba(255,255,255,0) 60%, 
-      rgba(0,0,0,0.4) 100%
-    );
-    pointer-events: none;
-    z-index: 3;
-  }
-
-  .crt-monitor::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(18, 16, 16, 0) 50%,
-      rgba(0, 0, 0, 0.3) 50%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 4;
-    animation: crt-interlace 0.05s linear infinite;
-  }
-
-  /* ANALYSIS CONTAINER - UPDATED FOR RED OCTOBER PROTOCOL - MOBILE RESPONSIVE */
-  .analysis-container {
-    position: relative;
-    background: transparent;
-    border: none;
-    padding: 1rem;
-    z-index: 5;
-    height: 100%;
-    max-height: 100%;
-    overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  @media (min-width: 640px) {
-    .analysis-container {
-      padding: 1.5rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .analysis-container {
-      padding: 2rem;
-    }
-  }
-
-  /* Analysis content utility for robust wrapping inside CRT */
-  .analysis-content {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  /* TEXT STYLING CLASSES */
-  .primary-text-style {
-    color: #EAEAEA;
-    text-shadow: 0 0 1px #EAEAEA,
-                 0 0 3px #EAEAEA,
-                 0 0 8px rgba(234, 234, 234, 0.3);
-  }
-
-  .accent-text-style {
-    color: #FF4500;
-    text-shadow: 0 0 2px #FF4500,
-                 0 0 5px #FF4500,
-                 0 0 12px rgba(255, 69, 0, 0.4);
-  }
-
-  .analysis-container h2,
-  .analysis-container h3,
-  .analysis-container p,
-  .analysis-container li,
-  .analysis-container strong,
-  .analysis-container span {
-    font-family: 'VT323', 'Roboto Mono', monospace !important;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 6;
-  }
-
-  .analysis-container h2 {
-    font-size: 1rem !important;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #FF4500;
-    padding-bottom: 12px;
-    letter-spacing: 1.5px;
-  }
-  
-  .analysis-container h3 {
-    font-size: 0.8rem !important;
-    margin-top: 32px;
-    margin-bottom: 12px;
-    line-height: 1.5;
-    letter-spacing: 0.8px;
-  }
-  
-  .analysis-container p, .analysis-container li {
-    font-size: 0.65rem !important;
-    line-height: 1.5;
-    margin-bottom: 12px;
-    max-width: 800px;
-  }
-
-  @media (min-width: 640px) {
-    .analysis-container h2 {
-      font-size: 1.15rem !important;
-      margin-bottom: 28px;
-      padding-bottom: 14px;
-    }
-    
-    .analysis-container h3 {
-      font-size: 0.85rem !important;
-      margin-top: 40px;
-      margin-bottom: 14px;
-    }
-    
-    .analysis-container p, .analysis-container li {
-      font-size: 0.68rem !important;
-      margin-bottom: 14px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .analysis-container h2 {
-      font-size: 1.25rem !important;
-      line-height: 1.8;
-      margin-bottom: 32px;
-      padding-bottom: 16px;
-      letter-spacing: 2px;
-    }
-    
-    .analysis-container h3 {
-      font-size: 0.9rem !important;
-      margin-top: 48px;
-      margin-bottom: 16px;
-      line-height: 1.6;
-      letter-spacing: 1px;
-    }
-    
-    .analysis-container p, .analysis-container li {
-      font-size: 0.7rem !important;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-  }
-  
-  .analysis-container strong {
-    font-weight: normal;
-  }
-
-  .analysis-container ul {
-    margin: 24px 0;
-    padding-left: 32px;
-  }
-
-  .analysis-container li {
-    margin-bottom: 8px;
-  }
-
-  .blinking-cursor {
-    display: inline-block;
-    background-color: #333333;
-    width: 1ch;
-    height: 1.2rem;
-    animation: blink 1s step-end infinite;
-    margin-left: 4px;
-    position: relative;
-    z-index: 6;
-  }
-
-  @keyframes screen-flicker {
-    0% { opacity: 1; }
-    25% { opacity: 0.97; }
-    50% { opacity: 0.94; }
-    75% { opacity: 0.98; }
-    100% { opacity: 1; }
-  }
-
-  @keyframes crt-distortion {
-    0% { transform: scaleY(1); }
-    50% { transform: scaleY(0.999); }
-    100% { transform: scaleY(1); }
-  }
-
-  @keyframes scanlines {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(4px); }
-  }
-
-  @keyframes crt-interlace {
-    0% { top: 0px; }
-    100% { top: 4px; }
-  }
-
-  @keyframes blink {
-    from, to { background-color: transparent; }
-    50% { background-color: #333333; }
-  }
-
-  /* DYNAMIC TEXTAREA STYLING - MOBILE RESPONSIVE */
-  .dynamic-textarea {
-    font-family: 'Roboto Mono', monospace !important;
-    font-size: 1rem;
-    color: hsl(var(--document-aged));
-    background-color: transparent;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    resize: none;
-    overflow: hidden;
-    width: 100%;
-    max-width: 800px;
-    padding: 8px 0;
-    line-height: 1.5;
-    max-height: 300px;
-  }
-
-  @media (min-width: 640px) {
-    .dynamic-textarea {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .dynamic-textarea {
-      font-size: 1.5rem;
-    }
-  }
-
-  .dynamic-textarea::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  .dynamic-textarea::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .dynamic-textarea::-webkit-scrollbar-thumb {
-    background: hsl(var(--blood-accent));
-  }
-
-  /* INTERFACE OVERRIDE PROTOCOL STYLES */
-  .text-container {
-    /* Adjust height to fit one line of text to prevent layout shift */
-    height: 2.25rem; 
-  }
-
-  .russian-text,
-  .faux-cyrillic-text {
-    /* Position both texts in the exact same spot */
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-  }
-
-  .faux-cyrillic-text {
-    /* Hide the replacement text initially */
-    opacity: 0;
-  }
-
-  .russian-text .strikethrough {
-    /* The strikethrough line itself */
-    position: absolute;
-    left: 0;
-    top: 55%;
-    height: 3px;
-    background-color: hsl(var(--blood-accent));
-    width: 0; /* Initially hidden, will be animated by GSAP */
-  }
-
-  /* SYSTEM ALERT FLASH OVERLAY */
-  .override-flash-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: hsl(var(--blood-accent));
-    opacity: 0;
-    pointer-events: none;
-    z-index: 9998;
+  /* NEON GLOW EFFECT */
+  .neon-glow {
+    box-shadow: 0 0 40px hsl(var(--accent-neon) / 0.35);
   }
 }
 
-@keyframes cursor-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes breathing {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.9;
-  }
-  50% { 
-    transform: scale(1.002);
-    opacity: 1;
-  }
-}
-
-@keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  10% { transform: translate(-2px, 2px); }
-  20% { transform: translate(2px, -2px); }
-  30% { transform: translate(-2px, -2px); }
-  40% { transform: translate(2px, 2px); }
-  50% { transform: translate(-2px, 2px); }
-  60% { transform: translate(2px, -2px); }
-  70% { transform: translate(-2px, -2px); }
-  80% { transform: translate(2px, 2px); }
-  90% { transform: translate(-2px, 2px); }
-}
-
-@keyframes fadeIn {
-  0% { 
-    opacity: 0; 
-    transform: translateY(10px);
-  }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    box-shadow: 0 0 0 0 hsl(var(--blood-accent) / 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 6px hsl(var(--blood-accent) / 0);
-  }
-}
-
-/* PHASE 2: STATIC NOISE OVERLAY - GPU-OPTIMIZED BACKGROUND */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(120, 120, 120, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 120, 120, 0.2) 0%, transparent 50%);
-  opacity: 0.03;
-  pointer-events: none;
-  z-index: 1;
-  animation: subtle-flicker 0.2s infinite;
-}
-
-@keyframes subtle-flicker {
-  0% { opacity: 0.03; }
-  50% { opacity: 0.04; }
-  100% { opacity: 0.03; }
-}
-
-/* SOVIET TERMINAL STYLING */
-.soviet-terminal {
-  font-family: 'Courier Prime', 'Courier New', monospace !important;
-  background-color: hsl(var(--soviet-dark));
-  border: 2px solid hsl(var(--soviet-green));
-  border-radius: 0;
-  padding: 0;
-  margin: 2rem 0;
-  box-shadow: 
-    0 0 20px hsl(var(--soviet-green) / 0.3),
-    inset 0 0 20px hsl(var(--soviet-green) / 0.1);
-}
-
-.terminal-screen {
-  position: relative;
-  background: linear-gradient(
-    180deg,
-    hsl(var(--soviet-dark)) 0%,
-    hsl(120 100% 3%) 100%
-  );
-  padding: 1rem;
-  overflow: hidden;
-}
-
-.terminal-screen::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    hsl(var(--soviet-green) / 0.03) 2px,
-    hsl(var(--soviet-green) / 0.03) 4px
-  );
-  pointer-events: none;
-}
-
-.terminal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid hsl(var(--soviet-green) / 0.3);
-}
-
-.terminal-title {
-  color: hsl(var(--soviet-green));
-  font-size: 1rem;
-  font-weight: 700;
-  text-shadow: 0 0 10px hsl(var(--soviet-green) / 0.8);
-  letter-spacing: 0.1em;
-}
-
-.terminal-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: hsl(var(--soviet-green));
-  font-size: 0.8rem;
-}
-
-.status-indicator {
-  width: 8px;
-  height: 8px;
-  background-color: hsl(var(--soviet-green));
-  border-radius: 50%;
-  animation: pulse-soviet 1.5s infinite;
-}
-
-.terminal-content {
-  min-height: 200px;
-  padding: 1rem 0;
-}
-
-.terminal-text {
-  color: hsl(var(--soviet-green));
-  font-size: 1.2rem;
-  line-height: 1.6;
-  text-shadow: 0 0 5px hsl(var(--soviet-green) / 0.6);
-  letter-spacing: 0.02em;
-  white-space: pre-wrap;
-}
-
-.terminal-cursor {
-  color: hsl(var(--soviet-green));
-  animation: blink-cursor 1s infinite;
-  text-shadow: 0 0 10px hsl(var(--soviet-green));
-}
-
-.terminal-footer {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid hsl(var(--soviet-green) / 0.3);
-}
-
-.system-info {
-  color: hsl(var(--soviet-green) / 0.7);
-  font-size: 0.7rem;
-  text-align: center;
-  letter-spacing: 0.1em;
-}
-
-@keyframes pulse-soviet {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes blink-cursor {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}

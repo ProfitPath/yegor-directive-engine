@@ -1,7 +1,7 @@
-import { SortingEngine } from '@/components/SortingEngine';
+import ZolexLanding from './ZolexLanding';
 
 const Index = () => {
-  return <SortingEngine />;
+  return <ZolexLanding />;
 };
 
 export default Index;
