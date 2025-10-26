@@ -70,7 +70,7 @@ export default function ZolexLanding() {
       {/* PROTOCOL CONSOLE */}
       <section id="protocols" className="relative mx-auto max-w-3xl px-4 py-12">
         <div className="mb-4 font-mono text-xs text-[hsl(var(--text-muted))]/70 text-center">
-          what yegor can do for you,neo?
+          what can yegor do for you, neo?
         </div>
         <div className="space-y-2">
           {modules.map((m, i) => (
