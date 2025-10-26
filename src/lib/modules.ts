@@ -13,7 +13,7 @@ export const modules: Module[] = [
   {
     code: "TWITTER.VIRAL",
     title: "badass twitter virality",
-    desc: "Threads, hooks, and meme ops that punch through. Outcomes: impressions, followers, pipeline.",
+    desc: "viral organic twitter growth, from the best in the fucking game",
     cta: { label: "[ DEPLOY VIRAL OPS ]", href: "#contact" }
   },
   {
