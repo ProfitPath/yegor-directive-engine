@@ -49,7 +49,7 @@ export default function ZolexLanding() {
         delay: 1,
         duration: 0.6
       }} className="relative z-10 text-center">
-          <div className="mx-auto mb-6">
+          <div className="mx-auto mb-6 flex justify-center">
             <img src={yLogo} alt="Y logo" className="h-32 w-32" />
           </div>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
