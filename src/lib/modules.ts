@@ -19,7 +19,7 @@ export const modules: Module[] = [
   {
     code: "UGC.MODELS",
     title: "ugc with elite creators",
-    desc: "conversion-optimized ugc pipelines. casting → briefs → edits → deliverables. heat without chaos.",
+    desc: "baddies from eastern europe make your ads ultra converting",
     cta: { label: "[ BOOK CREATOR OPS ]", href: "#contact" }
   },
   {
