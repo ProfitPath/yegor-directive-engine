@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ModuleRow } from "@/components/ModuleRow";
 import { modules } from "@/lib/modules";
 import useTypewriter from "@/hooks/useTypewriter";
-import yLogo from "@/assets/y-logo.png";
 export default function ZolexLanding() {
   const [showBoot, setShowBoot] = useState(true);
   const [email, setEmail] = useState("");
@@ -49,8 +48,8 @@ export default function ZolexLanding() {
         delay: 1,
         duration: 0.6
       }} className="relative z-10 text-center">
-          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center">
-            <img src={yLogo} alt="Y Logo" className="h-full w-full object-contain" />
+          <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-none border border-[var(--stroke)] bg-[var(--surface)]">
+            <span className="font-mono text-2xl text-[hsl(var(--accent))]">YM</span>
           </div>
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             yegor method
