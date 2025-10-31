@@ -14,13 +14,13 @@ export const modules: Module[] = [
     code: "TWITTER.VIRAL",
     title: "badass twitter virality",
     desc: "badass targeted viral content that prints you $$$",
-    cta: { label: "[ DEPLOY VIRAL OPS ]", href: "#contact" }
+    cta: { label: "[ DEPLOY VIRAL OPS ]", href: "https://xvirality.pro", external: true }
   },
   {
     code: "UGC.MODELS",
     title: "ugc with elite creators",
     desc: "baddies from eastern europe make your ads ultra converting",
-    cta: { label: "[ BOOK CREATOR OPS ]", href: "#contact" }
+    cta: { label: "[ BOOK CREATOR OPS ]", href: "https://inbaddieswetrust.pro", external: true }
   },
   {
     code: "ZOLEX.ELITE",
@@ -32,7 +32,7 @@ export const modules: Module[] = [
     code: "SCALE.SUITE",
     title: "scale suite — free telegram",
     desc: "daily ops notes, prompts, executable playbooks. free feed; pay with attention.",
-    cta: { label: "[ JOIN TELEGRAM ]", href: "https://t.me/scaleSuite", external: true }
+    cta: { label: "[ JOIN TELEGRAM ]", href: "https://t.me/scalesuite", external: true }
   },
   {
     code: "PRINTMONEY.PRO",
