@@ -62,12 +62,6 @@ export default function ZolexLanding() {
             {"> ACCESS GRANTED"}
             <span className="ml-2 cursor-blink text-[hsl(var(--accent))]">▍</span>
           </div>
-          
-          <div className="mt-8 max-w-2xl mx-auto px-4">
-            <p className="text-sm text-[hsl(var(--text))] leading-relaxed">
-              text here
-            </p>
-          </div>
         </motion.div>
       </section>
 
