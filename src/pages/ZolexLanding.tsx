@@ -61,6 +61,20 @@ export default function ZolexLanding() {
           <div className="mt-8 font-mono text-xs text-[hsl(var(--text-muted))]/70">
             {"Who am I?"}
           </div>
+          <div className="mt-6 max-w-2xl mx-auto text-white space-y-3">
+            <p className="text-sm md:text-base">
+              I am a virality engineer and master of Twitter.
+            </p>
+            <p className="text-sm md:text-base">
+              I market, sell, print, and funnel your offer on X to unlock $10K-$3M in untapped revenue.
+            </p>
+            <p className="text-sm md:text-base">
+              Below is in depth info on each of my offers.
+            </p>
+            <p className="text-sm md:text-base">
+              Enjoy.
+            </p>
+          </div>
         </motion.div>
       </section>
 
