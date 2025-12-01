@@ -10,13 +10,13 @@ export function ModuleRow({
   defaultOpen = false
 }: ModuleRowProps) {
   return <details className="mb-3 rounded-lg border border-white/[0.1] bg-white/[0.02] overflow-hidden" open={defaultOpen}>
-      <summary className="flex items-center gap-3 px-4 py-3.5 md:py-4 cursor-pointer list-none text-[hsl(var(--text))] text-[0.98rem] transition-colors duration-150 hover:bg-white/[0.05] [&::-webkit-details-marker]:hidden">
+      <summary className="flex items-center justify-center gap-3 px-4 py-3.5 md:py-4 cursor-pointer list-none text-[hsl(var(--text))] text-[0.98rem] transition-colors duration-150 hover:bg-white/[0.05] [&::-webkit-details-marker]:hidden">
         <span className="font-mono text-[0.84rem] tracking-[0.12em] uppercase text-white/90">
           [ {code} ]
         </span>
         
       </summary>
-      <div className="px-4 pb-4 pl-8 md:pl-10 border-t border-white/[0.08]">
+      <div className="px-4 pb-4 border-t border-white/[0.08] text-center">
         <p className="mt-3 text-[0.95rem] leading-[1.55] text-[hsl(var(--text-muted))]">
           {desc}
         </p>
