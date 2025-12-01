@@ -39,7 +39,7 @@ export default function ZolexLanding() {
         </motion.div>}
 
       {/* HERO */}
-      <section className="relative grid min-h-[70vh] place-items-center vignette">
+      <section className="relative grid min-h-[45vh] place-items-center vignette">
         <div className="scanlines absolute inset-0" />
         <motion.div initial={{
         opacity: 0
