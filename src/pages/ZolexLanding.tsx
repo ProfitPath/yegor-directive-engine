@@ -67,7 +67,7 @@ export default function ZolexLanding() {
 
       {/* PROTOCOL CONSOLE */}
       <section id="protocols" className="relative mx-auto max-w-[700px] px-4 py-12">
-        <div className="rounded-md border border-white/[0.08] bg-black overflow-hidden">
+        <div className="rounded-xl border border-white/[0.12] bg-black/40 backdrop-blur-sm p-4">
           {modules.map((m, i) => <ModuleRow key={m.code} {...m} defaultOpen={i === 0} />)}
         </div>
       </section>
