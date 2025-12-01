@@ -67,8 +67,14 @@ export default function ZolexLanding() {
 
       {/* PROTOCOL CONSOLE */}
       <section id="protocols" className="relative mx-auto max-w-[700px] px-4 py-12">
+        {/* PRIMARY SERVICES GROUP */}
+        <div className="rounded-xl border border-white/[0.12] bg-black/40 backdrop-blur-sm p-4 mb-8">
+          {modules.slice(0, 2).map((m, i) => <ModuleRow key={m.code} {...m} defaultOpen={i === 0} />)}
+        </div>
+
+        {/* ADDITIONAL SERVICES GROUP */}
         <div className="rounded-xl border border-white/[0.12] bg-black/40 backdrop-blur-sm p-4">
-          {modules.map((m, i) => <ModuleRow key={m.code} {...m} defaultOpen={i === 0} />)}
+          {modules.slice(2).map((m) => <ModuleRow key={m.code} {...m} defaultOpen={false} />)}
         </div>
       </section>
 
