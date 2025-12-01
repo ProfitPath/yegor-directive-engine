@@ -59,7 +59,7 @@ export default function ZolexLanding() {
             how to operate and get shit done
           </p>
           <div className="mt-8 font-mono text-xs text-[hsl(var(--text-muted))]/70">
-            {"> ACCESS GRANTED"}
+            {"Who am I?"}
             <span className="ml-2 cursor-blink text-[hsl(var(--accent))]">▍</span>
           </div>
         </motion.div>
