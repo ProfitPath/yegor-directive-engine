@@ -13,7 +13,7 @@ export const modules: Module[] = [
   {
     code: "TWITTER.VIRAL",
     title: "badass twitter virality",
-    desc: "badass targeted viral content that prints you $$$",
+    desc: "DFY/ DWY Twitter Monetization",
     cta: { label: "[ DEPLOY VIRAL OPS ]", href: "https://xvirality.pro", external: true }
   },
   {
