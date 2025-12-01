@@ -8,15 +8,15 @@ Pure black with blood-red accents. Terminal aesthetics. Hostile elegance.
 
 @layer base {
   :root {
-    /* CORE PALETTE - ELECTRIC BLUE SCHEME */
-    --bg: 220 40% 8%;                     /* Deep navy blue */
-    --text: 200 15% 90%;                  /* Soft blue-white */
-    --text-muted: 200 10% 60%;            /* Muted blue-gray */
-    --accent: 190 90% 60%;                /* Electric cyan */
-    --accent2: 200 70% 70%;               /* Bright blue */
-    --surface: 200 50% 50% / 0.08;        /* Translucent blue surface */
-    --stroke: 190 60% 50% / 0.15;         /* Blue borders */
-    --glow: 190 90% 60% / 0.35;           /* Cyan glow */
+    /* CORE PALETTE - BLACK/GREY SCHEME */
+    --bg: 0 0% 5%;                        /* Near black */
+    --text: 0 0% 90%;                     /* Light grey */
+    --text-muted: 0 0% 55%;               /* Medium grey */
+    --accent: 0 0% 85%;                   /* Light grey accent */
+    --accent2: 0 0% 70%;                  /* Medium grey accent */
+    --surface: 0 0% 100% / 0.05;          /* Translucent white surface */
+    --stroke: 0 0% 100% / 0.12;           /* Light borders */
+    --glow: 0 0% 100% / 0.25;             /* White glow */
     
     /* SYSTEM MAPPINGS */
     --background: var(--bg);
@@ -44,7 +44,7 @@ Pure black with blood-red accents. Terminal aesthetics. Hostile elegance.
     --input: var(--stroke);
     --ring: var(--accent);
     
-    --radius: 0rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -65,11 +65,11 @@ Pure black with blood-red accents. Terminal aesthetics. Hostile elegance.
 
   /* DARK MODE (SAME AS DEFAULT) */
   .dark {
-    --bg: 220 40% 8%;
-    --text: 200 15% 90%;
-    --text-muted: 200 10% 60%;
-    --accent: 190 90% 60%;
-    --accent2: 200 70% 70%;
+    --bg: 0 0% 5%;
+    --text: 0 0% 90%;
+    --text-muted: 0 0% 55%;
+    --accent: 0 0% 85%;
+    --accent2: 0 0% 70%;
   }
 }
 
