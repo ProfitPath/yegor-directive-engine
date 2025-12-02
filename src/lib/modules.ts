@@ -23,7 +23,7 @@ export const modules: Module[] = [
     cta: { label: "[ BOOK CREATOR OPS ]", href: "https://inbaddieswetrust.pro", external: true }
   },
   {
-    code: "ZOLEX.ELITE",
+    code: "ZYLIX.ELITE",
     title: "the black-site group chat",
     desc: "badass gc with real killers printing. no brokies",
     cta: { label: "[ REQUEST CHAMBER ACCESS ]", href: "https://zolex.io", external: true }
