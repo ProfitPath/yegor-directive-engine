@@ -30,7 +30,7 @@ export const modules: Module[] = [
   {
     code: "ZYLIX.ELITE",
     title: "the black-site group chat",
-    desc: "My badass gc with VERIFIED people making over 50k/m. no brokies or jeets",
+    desc: "My badass gc with VERIFIED people making over 50k/m. no brokies or jeets. apply to join by dming me on telegram (link below)",
     cta: { label: "[ REQUEST CHAMBER ACCESS ]", href: "https://zolex.io", external: true }
   },
   {
