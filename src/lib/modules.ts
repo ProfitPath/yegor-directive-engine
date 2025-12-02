@@ -1,12 +1,14 @@
+export interface ModuleCta {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
 export interface Module {
   code: string;
   title: string;
   desc: string;
-  cta: {
-    label: string;
-    href: string;
-    external?: boolean;
-  };
+  cta: ModuleCta | ModuleCta[];
 }
 
 export const modules: Module[] = [
@@ -14,7 +16,10 @@ export const modules: Module[] = [
     code: "TWITTER.VIRAL",
     title: "badass twitter virality",
     desc: "DFY/ DWY Twitter Monetization",
-    cta: { label: "[ DEPLOY VIRAL OPS ]", href: "https://xvirality.pro", external: true }
+    cta: [
+      { label: "[ MORE INFO ]", href: "https://xvirality.pro", external: true },
+      { label: "[ FREE X BLUEPRINT ]", href: "https://docs.google.com/document/d/e/2PACX-1vTI3vz8aXuYlNWC1r-6NP-LmDbvp7-Ld72UaNnIS22nLK-WHOSpAB-HjaqI0y0sUw/pub", external: true }
+    ]
   },
   {
     code: "UGC.MODELS",
