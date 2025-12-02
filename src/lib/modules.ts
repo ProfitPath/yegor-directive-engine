@@ -31,7 +31,7 @@ export const modules: Module[] = [
   {
     code: "SCALE.SUITE",
     title: "scale suite — free telegram",
-    desc: "daily ops notes, prompts, executable playbooks. free feed; pay with attention.",
+    desc: "free telegram GC with value",
     cta: { label: "[ JOIN TELEGRAM ]", href: "https://t.me/scalesuite", external: true }
   },
   {
