@@ -66,7 +66,7 @@ export default function ZolexLanding() {
               I am a virality engineer and master of Twitter.
             </p>
             <p className="text-sm md:text-base">
-              I market, sell, print, and funnel your offer on X to unlock $10K-$3M in untapped revenue.
+              I market, sell, funnel, and help you print with your offer on X to unlock $10K-$3M in untapped revenue.
             </p>
             <p className="text-sm md:text-base">
               Below is in depth info on each of my offers.
