@@ -39,10 +39,4 @@ export const modules: Module[] = [
     desc: "free telegram GC with value",
     cta: { label: "[ JOIN TELEGRAM ]", href: "https://t.me/scalesuite", external: true }
   },
-  {
-    code: "PRINTMONEY.PRO",
-    title: "info-prod sauce",
-    desc: "frameworks and templates that sell. productize → funnel → distribute.",
-    cta: { label: "[ GET THE SAUCE ]", href: "https://printmoney.pro", external: true }
-  }
 ];
